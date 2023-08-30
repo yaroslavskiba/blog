@@ -1,12 +1,12 @@
-import { NfContainer, NfImg } from './NotFound.styles';
+import { MdContainer, MdImg } from '../styles/styles';
 
 const NotFound = () => {
   return (
-    <NfContainer>
-      <NfImg src='../public/img/nf.svg' alt='not found' />
+    <MdContainer>
+      <MdImg src='../public/img/nf.svg' alt='not found' />
       <h1>404</h1>
       <h2>Page not found :(</h2>
-    </NfContainer>
+    </MdContainer>
   );
 };
 
