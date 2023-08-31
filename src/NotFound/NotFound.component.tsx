@@ -1,11 +1,11 @@
-import { MdContainer, MdImg } from '../styles/styles';
+import { MdContainer, MdImg } from '../styles/General.styles';
 
 const NotFound = () => {
   return (
     <MdContainer>
-      <MdImg src='../public/img/nf.svg' alt='not found' />
+      <MdImg src='./img/nf.svg' alt='not found' />
       <h1>404</h1>
-      <h2>Page not found :(</h2>
+      <h2>Page not found...</h2>
     </MdContainer>
   );
 };

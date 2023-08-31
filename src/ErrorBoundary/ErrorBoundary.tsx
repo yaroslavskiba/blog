@@ -1,5 +1,5 @@
 import React, { Component, ErrorInfo } from 'react';
-import { MdContainer, MdImg } from '../styles/styles';
+import { MdContainer, MdImg } from '../styles/General.styles';
 
 interface Props {
   children: React.ReactNode;
@@ -28,7 +28,7 @@ class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         <MdContainer>
-          <MdImg src='../public/img/err.svg' alt='not found' />
+          <MdImg src='./img/err.svg' alt='not found' />
           <h1>Something went wrong...</h1>
           <h2>Please reload page</h2>
         </MdContainer>
