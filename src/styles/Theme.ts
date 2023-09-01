@@ -7,6 +7,6 @@ export const theme = {
     linkColor: '#737ADE',
     summaryTextColor: '#8C90A1',
     quoteTextColor: '#8C90A1',
-    verticalDelemiterColor: '#2E3039',
+    DelemiterColor: '#2E3039',
   },
 };

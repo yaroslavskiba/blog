@@ -32,7 +32,7 @@ export const GlobalStyles = createGlobalStyle`
   body a,
   body a:active,
   body a:focus {
-    text-decoration: none;
+    /* text-decoration: none; */
     outline: none;
   }
   html a:active,
