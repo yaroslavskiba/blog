@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Label, InputText, LinkButton } from '../../../styles/General.styles';
 import { AuthForm, InputContainer } from './Auth.styles';
-import { createNewUser } from './createNewUser.func';
 import { useNavigate } from 'react-router-dom';
+import { createNewUser } from './auth.fucn';
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -11,6 +11,12 @@ const RegistrationForm = () => {
     email: '',
     password: '',
     confirmPassword: '',
+  });
+
+  const [error, setError] = useState({
+    email: false,
+    password: false,
+    confirmPassword: false,
   });
 
   const handleRegistration = async (e: { preventDefault: () => void }) => {
@@ -37,8 +43,11 @@ const RegistrationForm = () => {
     <AuthForm onSubmit={handleRegistration}>
       <h1>Sign Up: </h1>
       <InputContainer>
-        <Label htmlFor='login'>Email:</Label>
+        <Label errorInput={error.email} htmlFor='login'>
+          Email:
+        </Label>
         <InputText
+          errorInput={error.email}
           type='email'
           id='email'
           name='email'
@@ -47,8 +56,11 @@ const RegistrationForm = () => {
         />
       </InputContainer>
       <InputContainer>
-        <Label htmlFor='password'>Password:</Label>
+        <Label errorInput={error.password} htmlFor='password'>
+          Password:
+        </Label>
         <InputText
+          errorInput={error.password}
           type='password'
           id='password'
           name='password'
@@ -57,8 +69,11 @@ const RegistrationForm = () => {
         />
       </InputContainer>
       <InputContainer>
-        <Label htmlFor='confirmPassword'>Confirm Password:</Label>
+        <Label errorInput={error.confirmPassword} htmlFor='confirmPassword'>
+          Confirm Password:
+        </Label>
         <InputText
+          errorInput={error.confirmPassword}
           type='password'
           id='confirmPassword'
           name='confirmPassword'

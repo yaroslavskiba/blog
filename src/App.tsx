@@ -6,7 +6,7 @@ import { GlobalStyles } from './styles/Global.styles';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/Theme';
 import Wrapper from './Components/Wrapper';
-import Registration from './Components/Main/Auth/Registration';
+import SignIn from './Components/Main/Auth/SignIn';
 import Authentication from './Components/Main/Auth/Authentication';
 
 // Import the functions you need from the SDKs you need
@@ -40,7 +40,7 @@ function App() {
         <Routes>
           <Route path='*' element={<NotFound />} />
           <Route path='/' element={<Wrapper />}>
-            <Route path='registration' element={<Registration />} />
+            <Route path='registration' element={<SignIn />} />
             <Route path='authentication' element={<Authentication />} />
           </Route>
         </Routes>

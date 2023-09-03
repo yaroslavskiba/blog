@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Label, InputText, LinkButton } from '../../../styles/General.styles';
-import { AuthForm, InputContainer } from './Auth.styles';
+import { AuthError, AuthForm, InputContainer } from './Auth.styles';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from './Authentication.func';
+import { loginUser } from './auth.fucn';
 
 const Authentication = () => {
   const navigate = useNavigate();
@@ -11,9 +11,16 @@ const Authentication = () => {
     password: '',
   });
 
+  const [error, setError] = useState(false);
+
   const handleAuthentication = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    await loginUser(formData.email, formData.password);
+    const user = await loginUser(formData.email, formData.password);
+    if (!user) {
+      setError(true);
+      return;
+    }
+    setError(false);
 
     setFormData({
       email: '',
@@ -34,6 +41,11 @@ const Authentication = () => {
   return (
     <AuthForm onSubmit={handleAuthentication}>
       <h1>Sign In: </h1>
+      {error && (
+        <AuthError>
+          An error occurred during authorization! Please check the entered data.
+        </AuthError>
+      )}
       <InputContainer>
         <Label htmlFor='login'>Email:</Label>
         <InputText

@@ -13,3 +13,12 @@ export const AuthForm = styled.form`
   flex-direction: column;
   gap: 20px;
 `;
+
+export const AuthError = styled.div`
+  width: inherit;
+  height: 85px;
+  background-color: ${(props) => props.theme.colors.danger};
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+`;
