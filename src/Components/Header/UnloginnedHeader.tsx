@@ -3,8 +3,8 @@ import { HeaderContainer, HeaderLink } from './styles/Header.styles';
 const UnlogginedHeader = () => {
   return (
     <HeaderContainer>
-      <HeaderLink to='/registration'>Sign In</HeaderLink>
-      <HeaderLink to='/authentication'>Sign Up</HeaderLink>
+      <HeaderLink to='/authentication'>Sign In</HeaderLink>
+      <HeaderLink to='/registration'>Sign Up</HeaderLink>
     </HeaderContainer>
   );
 };

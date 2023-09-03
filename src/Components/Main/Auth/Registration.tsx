@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
 import { Label, InputText, LinkButton } from '../../../styles/General.styles';
 import { AuthForm, InputContainer } from './Auth.styles';
+import { createNewUser } from './createNewUser.func';
+import { useNavigate } from 'react-router-dom';
 
 const RegistrationForm = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     confirmPassword: '',
   });
 
-  const handleRegistration = (e: { preventDefault: () => void }) => {
+  const handleRegistration = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-
+    await createNewUser(formData.email, formData.password);
     setFormData({
       email: '',
       password: '',
       confirmPassword: '',
     });
+
+    navigate('/authentication');
   };
 
   const handleChange = (e: { target: { name: string; value: string } }) => {

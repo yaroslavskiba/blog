@@ -35,6 +35,7 @@ export const LinkButton = styled.button`
   color: ${(props) => props.theme.colors.linkColor};
   font-size: 20px;
   text-align: left;
+  width: max-content;
 
   &:hover {
     text-decoration: underline;
