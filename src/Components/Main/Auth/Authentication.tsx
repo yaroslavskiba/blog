@@ -11,6 +11,11 @@ const Authentication = () => {
     password: '',
   });
 
+  const inputs = [
+    { name: 'Email:', type: 'email', data: formData.email },
+    { name: 'Password:', type: 'password', data: formData.password },
+  ];
+
   const [error, setError] = useState(false);
 
   const handleAuthentication = async (e: { preventDefault: () => void }) => {
@@ -46,26 +51,18 @@ const Authentication = () => {
           An error occurred during authorization! Please check the entered data.
         </AuthError>
       )}
-      <InputContainer>
-        <Label htmlFor='login'>Email:</Label>
-        <InputText
-          type='email'
-          id='email'
-          name='email'
-          value={formData.email}
-          onChange={handleChange}
-        />
-      </InputContainer>
-      <InputContainer>
-        <Label htmlFor='password'>Password:</Label>
-        <InputText
-          type='password'
-          id='password'
-          name='password'
-          value={formData.password}
-          onChange={handleChange}
-        />
-      </InputContainer>
+      {inputs.map((item) => (
+        <InputContainer>
+          <Label htmlFor='login'>{item.name}</Label>
+          <InputText
+            type={item.type}
+            id={item.type}
+            name={item.type}
+            value={item.data}
+            onChange={handleChange}
+          />
+        </InputContainer>
+      ))}
       <LinkButton type='submit'>Send</LinkButton>
     </AuthForm>
   );

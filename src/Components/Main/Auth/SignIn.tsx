@@ -6,29 +6,56 @@ import { createNewUser } from './auth.fucn';
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     confirmPassword: '',
   });
 
-  const [error, setError] = useState({
+  const inputs = [
+    { name: 'Email:', type: 'email', id: 'email', data: formData.email },
+    {
+      name: 'Password:',
+      type: 'password',
+      id: 'password',
+      data: formData.password,
+    },
+    {
+      name: 'Confirm Password:',
+      type: 'password',
+      id: 'confirmPassword',
+      data: formData.confirmPassword,
+    },
+  ];
+
+  const [error, setError] = useState<{ [key: string]: boolean }>({
     email: false,
     password: false,
     confirmPassword: false,
   });
 
+  const [validation, setValidation] = useState(true);
+
   const handleRegistration = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    await createNewUser(formData.email, formData.password);
-    setFormData({
-      email: '',
-      password: '',
-      confirmPassword: '',
-    });
+    if (formData.password === formData.confirmPassword) {
+      await createNewUser(formData.email, formData.password);
 
-    navigate('/authentication');
+      setFormData({
+        email: '',
+        password: '',
+        confirmPassword: '',
+      });
+
+      navigate('/authentication');
+    } else {
+      setValidation(false);
+      setError({
+        email: false,
+        password: true,
+        confirmPassword: true,
+      });
+    }
   };
 
   const handleChange = (e: { target: { name: string; value: string } }) => {
@@ -42,46 +69,27 @@ const RegistrationForm = () => {
   return (
     <AuthForm onSubmit={handleRegistration}>
       <h1>Sign Up: </h1>
-      <InputContainer>
-        <Label errorInput={error.email} htmlFor='login'>
-          Email:
-        </Label>
-        <InputText
-          errorInput={error.email}
-          type='email'
-          id='email'
-          name='email'
-          value={formData.email}
-          onChange={handleChange}
-        />
-      </InputContainer>
-      <InputContainer>
-        <Label errorInput={error.password} htmlFor='password'>
-          Password:
-        </Label>
-        <InputText
-          errorInput={error.password}
-          type='password'
-          id='password'
-          name='password'
-          value={formData.password}
-          onChange={handleChange}
-        />
-      </InputContainer>
-      <InputContainer>
-        <Label errorInput={error.confirmPassword} htmlFor='confirmPassword'>
-          Confirm Password:
-        </Label>
-        <InputText
-          errorInput={error.confirmPassword}
-          type='password'
-          id='confirmPassword'
-          name='confirmPassword'
-          value={formData.confirmPassword}
-          onChange={handleChange}
-        />
-      </InputContainer>
-      <LinkButton type='submit'>Save</LinkButton>
+      {inputs.map((item) => (
+        <InputContainer>
+          <Label errorInput={error[item.type]} htmlFor='login'>
+            {item.name}
+          </Label>
+          <InputText
+            errorInput={error[item.type]}
+            type={item.type}
+            name={item.id}
+            value={item.data}
+            onChange={handleChange}
+          />
+        </InputContainer>
+      ))}
+      {validation ? (
+        <LinkButton type='submit'>Save</LinkButton>
+      ) : (
+        <LinkButton type='submit' disabled>
+          Save
+        </LinkButton>
+      )}
     </AuthForm>
   );
 };
