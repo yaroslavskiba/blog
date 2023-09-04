@@ -5,10 +5,13 @@ import { auth } from '../../../App';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Reader from './Reader';
+import { useAppSelector } from '../../../app/hooks';
+import Author from './Author';
 
 const Profile = () => {
   const user = auth.currentUser;
   const navigate = useNavigate();
+  const status = useAppSelector((state) => state.user.status);
 
   useEffect(() => {
     if (!user) {
@@ -22,7 +25,7 @@ const Profile = () => {
         <AiOutlineArrowLeft />
         Main
       </LinkComponent>
-      <Reader />
+      {status === 'Reader' ? <Reader /> : <Author />}
     </ContentContainer>
   );
 };
