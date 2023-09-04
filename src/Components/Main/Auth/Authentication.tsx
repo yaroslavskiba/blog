@@ -20,6 +20,7 @@ const Authentication = () => {
 
   const handleAuthentication = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+
     const user = await loginUser(formData.email, formData.password);
     if (!user) {
       setError(true);
@@ -52,7 +53,7 @@ const Authentication = () => {
         </AuthError>
       )}
       {inputs.map((item) => (
-        <InputContainer>
+        <InputContainer key={item.name}>
           <Label htmlFor='login'>{item.name}</Label>
           <InputText
             type={item.type}

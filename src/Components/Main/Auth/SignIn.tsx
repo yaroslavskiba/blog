@@ -70,7 +70,7 @@ const RegistrationForm = () => {
     <AuthForm onSubmit={handleRegistration}>
       <h1>Sign Up: </h1>
       {inputs.map((item) => (
-        <InputContainer>
+        <InputContainer key={item.name}>
           <Label errorInput={error[item.type]} htmlFor='login'>
             {item.name}
           </Label>
