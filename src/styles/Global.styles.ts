@@ -3,8 +3,8 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyles = createGlobalStyle`
   html,
   body {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     font-weight: 400;
     font-size: 20px;
     line-height: 1.5;
@@ -32,7 +32,7 @@ export const GlobalStyles = createGlobalStyle`
   body a,
   body a:active,
   body a:focus {
-    /* text-decoration: none; */
+    text-decoration: none;
     outline: none;
   }
   html a:active,

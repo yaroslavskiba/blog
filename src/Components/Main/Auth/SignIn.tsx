@@ -1,61 +1,39 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Label, InputText, LinkButton } from '../../../styles/General.styles';
-import { AuthForm, InputContainer } from './Auth.styles';
+import { AuthError, AuthForm, InputContainer } from './Auth.styles';
 import { useNavigate } from 'react-router-dom';
-import { createNewUser } from './auth.fucn';
+import { loginUser } from './auth.fucn';
 
-const RegistrationForm = () => {
+const SignIn = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    confirmPassword: '',
   });
 
   const inputs = [
-    { name: 'Email:', type: 'email', id: 'email', data: formData.email },
-    {
-      name: 'Password:',
-      type: 'password',
-      id: 'password',
-      data: formData.password,
-    },
-    {
-      name: 'Confirm Password:',
-      type: 'password',
-      id: 'confirmPassword',
-      data: formData.confirmPassword,
-    },
+    { name: 'Email:', type: 'email', data: formData.email },
+    { name: 'Password:', type: 'password', data: formData.password },
   ];
 
-  const [error, setError] = useState<{ [key: string]: boolean }>({
-    email: false,
-    password: false,
-    confirmPassword: false,
-  });
+  const [error, setError] = useState(false);
 
-  const [validation, setValidation] = useState(true);
-
-  const handleRegistration = async (e: { preventDefault: () => void }) => {
+  const handleAuthentication = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (formData.password === formData.confirmPassword) {
-      await createNewUser(formData.email, formData.password);
 
-      setFormData({
-        email: '',
-        password: '',
-        confirmPassword: '',
-      });
-
-      navigate('/authentication');
-    } else {
-      setValidation(false);
-      setError({
-        email: false,
-        password: true,
-        confirmPassword: true,
-      });
+    const user = await loginUser(formData.email, formData.password);
+    if (!user) {
+      setError(true);
+      return;
     }
+    setError(false);
+
+    setFormData({
+      email: '',
+      password: '',
+    });
+
+    navigate('/');
   };
 
   const handleChange = (e: { target: { name: string; value: string } }) => {
@@ -67,31 +45,28 @@ const RegistrationForm = () => {
   };
 
   return (
-    <AuthForm onSubmit={handleRegistration}>
-      <h1>Sign Up: </h1>
+    <AuthForm onSubmit={handleAuthentication}>
+      <h1>Sign In: </h1>
+      {error && (
+        <AuthError>
+          An error occurred during authorization! Please check the entered data.
+        </AuthError>
+      )}
       {inputs.map((item) => (
         <InputContainer key={item.name}>
-          <Label errorInput={error[item.type]} htmlFor='login'>
-            {item.name}
-          </Label>
+          <Label htmlFor='login'>{item.name}</Label>
           <InputText
-            errorInput={error[item.type]}
             type={item.type}
-            name={item.id}
+            id={item.type}
+            name={item.type}
             value={item.data}
             onChange={handleChange}
           />
         </InputContainer>
       ))}
-      {validation ? (
-        <LinkButton type='submit'>Save</LinkButton>
-      ) : (
-        <LinkButton type='submit' disabled>
-          Save
-        </LinkButton>
-      )}
+      <LinkButton type='submit'>Send</LinkButton>
     </AuthForm>
   );
 };
 
-export default RegistrationForm;
+export default SignIn;

@@ -16,22 +16,22 @@ export const MdContainer = styled.div`
   justify-content: center;
 `;
 
-export const Label = styled.label<{ errorInput?: boolean }>`
+export const Label = styled.label<{ errorinput?: string }>`
   font-size: 22px;
   font-weight: 500;
   color: ${(props) =>
-    props.errorInput
+    props.errorinput === 'true'
       ? props.theme.colors.danger
       : props.theme.colors.articleTextColor};
 `;
 
-export const InputText = styled.input<{ errorInput?: boolean }>`
+export const InputText = styled.input<{ errorinput?: string }>`
   width: 100%;
   height: 75px;
   background-color: ${(props) => props.theme.colors.backgroundColor};
   border: 3px solid
     ${(props) =>
-      props.errorInput
+      props.errorinput === 'true'
         ? props.theme.colors.danger
         : props.theme.colors.articleBackgroundColor};
   color: ${(props) => props.theme.colors.articleTextColor};
@@ -47,4 +47,17 @@ export const LinkButton = styled.button`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+export const WrapperContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
+
+export const FlexDisplayColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 `;

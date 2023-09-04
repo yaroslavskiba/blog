@@ -1,10 +1,16 @@
-import { HeaderContainer } from './styles/Header.styles';
+import { auth } from '../../App';
+import { HeaderContainer, HeaderLink } from './Header.styles';
+import { AiOutlineProfile } from 'react-icons/ai';
 
 const LogginedHeader = () => {
+  const user = auth.currentUser;
+
   return (
     <HeaderContainer>
-      Loggined
-      <></>
+      <HeaderLink to='/profile'>
+        <AiOutlineProfile />
+        {user?.email}
+      </HeaderLink>
     </HeaderContainer>
   );
 };

@@ -2,7 +2,8 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import { auth } from '../../../App';
+import { auth, db } from '../../../App';
+import { collection, doc, setDoc } from 'firebase/firestore';
 
 export const loginUser = async (email: string, password: string) => {
   try {
@@ -31,5 +32,24 @@ export const createNewUser = async (email: string, password: string) => {
     console.log('Пользователь успешно создан:', user.uid);
   } catch (error) {
     console.error('Ошибка при создании пользователя:', error);
+  }
+};
+
+export const createUserData = async () => {
+  const user = auth.currentUser;
+
+  if (user) {
+    const docRef = doc(collection(db, 'users'), user.uid);
+
+    const data = {
+      name: 'user-' + user?.uid.slice(5),
+      description: 'Missing',
+      rating: 100,
+      birthDate: 'n/d',
+      gender: 'n/d',
+      status: 'Reader',
+    };
+
+    await setDoc(docRef, data);
   }
 };

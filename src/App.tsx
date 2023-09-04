@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './NotFound/NotFound.component';
@@ -6,13 +6,16 @@ import { GlobalStyles } from './styles/Global.styles';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/Theme';
 import Wrapper from './Components/Wrapper';
-import SignIn from './Components/Main/Auth/SignIn';
-import Authentication from './Components/Main/Auth/Authentication';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
+import { DocumentData, doc, getDoc, getFirestore } from 'firebase/firestore';
+
 import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import Profile from './Components/Main/Profile/Profile';
+import SignIn from './Components/Main/Auth/SignIn';
+import SignUp from './Components/Main/Auth/SignUp';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -33,6 +36,30 @@ export const auth = getAuth(firebaseApp);
 export const db = getFirestore(firebaseApp);
 
 function App() {
+  const [user] = useAuthState(auth);
+  const [userData, setUserData] = useState<DocumentData | null>(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (user) {
+        try {
+          const docRef = doc(db, 'users', user.uid);
+          const docSnap = await getDoc(docRef);
+
+          if (docSnap.exists()) {
+            setUserData(docSnap.data());
+          }
+        } catch (error) {
+          console.error('Error getting document:');
+        }
+      }
+    };
+
+    fetchUserData();
+  }, [user]);
+
+  useEffect(() => {}, [userData]);
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
@@ -40,8 +67,9 @@ function App() {
         <Routes>
           <Route path='*' element={<NotFound />} />
           <Route path='/' element={<Wrapper />}>
-            <Route path='registration' element={<SignIn />} />
-            <Route path='authentication' element={<Authentication />} />
+            <Route path='signUp' element={<SignUp />} />
+            <Route path='signIn' element={<SignIn />} />
+            <Route path='profile' element={<Profile />} />
           </Route>
         </Routes>
       </ErrorBoundary>

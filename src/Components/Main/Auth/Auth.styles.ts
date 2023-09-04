@@ -5,12 +5,17 @@ export const InputContainer = styled.div`
   flex-direction: column;
   gap: 10px;
   height: 95px;
+  width: 320px;
 `;
 
 export const AuthForm = styled.form`
-  width: 320px;
+  max-width: 1110px;
+  width: 100%;
+  height: 100%;
+  background-color: ${(props) => props.theme.colors.backgroundColor};
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
 `;
 

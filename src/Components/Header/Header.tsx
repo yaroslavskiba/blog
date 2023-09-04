@@ -1,16 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+import { auth } from '../../App';
 import LogginedHeader from './LogginedHeader';
 import UnlogginedHeader from './UnloginnedHeader';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Header = () => {
-  // const dispatch = useAppDispatch();
+  const [user] = useAuthState(auth);
 
-  // useEffect(() => {
-  //   dispatch(checkAuthUser());
-  // }, []);
-
-  // const user = useAppSelector((state) => state.authUser);
-  const user = '';
   return user ? <LogginedHeader /> : <UnlogginedHeader />;
 };
 

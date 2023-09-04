@@ -1,10 +1,10 @@
-import { HeaderContainer, HeaderLink } from './styles/Header.styles';
+import { HeaderContainer, HeaderLink } from './Header.styles';
 
 const UnlogginedHeader = () => {
   return (
     <HeaderContainer>
-      <HeaderLink to='/authentication'>Sign In</HeaderLink>
-      <HeaderLink to='/registration'>Sign Up</HeaderLink>
+      <HeaderLink to='/signIn'>Sign In</HeaderLink>
+      <HeaderLink to='/signUp'>Sign Up</HeaderLink>
     </HeaderContainer>
   );
 };
