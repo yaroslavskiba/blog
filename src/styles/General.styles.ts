@@ -54,7 +54,7 @@ export const TextArea = styled.textarea`
   border: 3px solid ${(props) => props.theme.colors.summaryTextColor};
   background-color: ${(props) => props.theme.colors.articleBackgroundColor};
   font-size: 22px;
-  padding: 5px 10px;
+  padding: 10px;
   color: ${(props) => props.theme.colors.articleTextColor};
 `;
 
@@ -89,4 +89,14 @@ export const Flex = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  height: 95px;
+  max-width: 480px;
+  width: 100%;
 `;

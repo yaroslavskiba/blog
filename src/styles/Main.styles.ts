@@ -39,13 +39,13 @@ export const UserInfoContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-export const UserHighlights = styled.div`
+export const UserHighlights = styled.span`
   flex: 0 0 25%;
   color: ${(props) => props.theme.colors.summaryTextColor};
   padding-right: 5px;
 `;
 
-export const UserStatistics = styled.div`
+export const UserStatistics = styled.span`
   flex: 0 0 75%;
   letter-spacing: 1px;
 

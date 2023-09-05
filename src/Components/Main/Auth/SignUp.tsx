@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
-import { Label, InputText, LinkButton } from '../../../styles/General.styles';
-import { AuthForm, InputContainer } from '../../../styles/Auth.styles';
+import {
+  Label,
+  InputText,
+  LinkButton,
+  InputContainer,
+} from '../../../styles/General.styles';
+import { AuthForm } from '../../../styles/Auth.styles';
 import { createNewUser, createUserData } from './auth.fucn';
 import { useNavigate } from 'react-router-dom';
 

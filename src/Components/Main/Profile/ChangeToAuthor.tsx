@@ -5,9 +5,9 @@ import {
   TextArea,
   Flex,
   LinkButton,
+  InputContainer,
 } from '../../../styles/General.styles';
 import Radio from '../../../styles/RadioButton';
-import { InputContainer } from '../../../styles/Auth.styles';
 import { AreaContainer, ContentContainer } from '../../../styles/Main.styles';
 import { StyleSheetManager } from 'styled-components';
 import {
@@ -100,10 +100,12 @@ const ChangeToAuthor = () => {
     <ContentContainer>
       <h1>Change to author mode</h1>
       <h2>Please tell a bit more about yourself</h2>
+
       <InputContainer>
         <Label htmlFor='image'>Image: </Label>
         <input type='file' name='image' onChange={handleImageChange} />
       </InputContainer>
+
       <InputContainer>
         <Label htmlFor='name'>Name: </Label>
         <StyleSheetManager shouldForwardProp={(prop) => prop !== 'lightbg'}>
@@ -116,6 +118,7 @@ const ChangeToAuthor = () => {
           />
         </StyleSheetManager>
       </InputContainer>
+
       <AreaContainer>
         <Label htmlFor='description'>Description: </Label>
         <TextArea
@@ -125,6 +128,7 @@ const ChangeToAuthor = () => {
           defaultValue='Tell something about yourself'
         />
       </AreaContainer>
+
       <InputContainer>
         <Label htmlFor='birthDate'>Birth Date: </Label>
         <StyleSheetManager shouldForwardProp={(prop) => prop !== 'lightbg'}>
@@ -137,6 +141,7 @@ const ChangeToAuthor = () => {
           />
         </StyleSheetManager>
       </InputContainer>
+
       <InputContainer>
         <Label htmlFor='gender'>Gender: </Label>
         <Flex>
@@ -154,6 +159,7 @@ const ChangeToAuthor = () => {
           />
         </Flex>
       </InputContainer>
+
       <LinkButton onClick={handleSubmit}>Save</LinkButton>
     </ContentContainer>
   );
