@@ -3,9 +3,11 @@ import { styled } from 'styled-components';
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 10px;
   height: 95px;
-  width: 320px;
+  max-width: 480px;
+  width: 100%;
 `;
 
 export const AuthForm = styled.form`

@@ -17,10 +17,10 @@ const RadioInput = styled.label`
 const RadioDot = styled.span<{ checked: boolean }>`
   position: relative;
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  border: 2px solid ${(props) => props.theme.colors.articleTextColor};
+  border: 3px solid ${(props) => props.theme.colors.articleTextColor};
   margin-right: 8px;
 
   &:after {

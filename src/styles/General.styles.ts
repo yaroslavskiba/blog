@@ -47,7 +47,7 @@ export const InputText = styled.input<{
 `;
 
 export const TextArea = styled.textarea`
-  max-width: 450px;
+  max-width: 730px;
   min-width: 300px;
   width: 100%;
   height: 250px;
@@ -65,6 +65,7 @@ export const LinkButton = styled.button`
   display: flex;
   align-items: center;
   gap: 5px;
+  width: max-content;
 
   &:hover {
     text-decoration: underline;

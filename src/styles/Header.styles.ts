@@ -6,7 +6,8 @@ export const HeaderContainer = styled.div`
   width: 100%;
   background-color: ${(props) => props.theme.colors.articleBackgroundColor};
   display: flex;
-  justify-content: end;
+  flex-direction: row-reverse;
+  justify-content: space-between;
   align-items: center;
   gap: 15px;
   padding: 0 2%;
@@ -16,5 +17,11 @@ export const HeaderLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 10px;
-  color: ${(props) => props.theme.colors.linkColor};
+  color: ${(props) => props.theme.colors.summaryTextColor};
+`;
+
+export const Group = styled.div`
+  display: flex;
+  gap: 15px;
+  justify-content: end;
 `;

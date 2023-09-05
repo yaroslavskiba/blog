@@ -19,6 +19,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { fetchUserData } from './app/slices/userSlice';
 import { useAppDispatch } from './app/hooks';
 import ChangeToAuthor from './Components/Main/Profile/ChangeToAuthor';
+import CreatePost from './Components/Main/Blog/CreatePost/CreatePost';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -53,6 +54,7 @@ function App() {
             <Route path='signIn' element={<SignIn />} />
             <Route path='profile' element={<Profile />} />
             <Route path='change_to_author' element={<ChangeToAuthor />} />
+            <Route path='createPost' element={<CreatePost />} />
           </Route>
 
           <Route path='*' element={<NotFound />} />

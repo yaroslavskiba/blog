@@ -72,6 +72,9 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     list-style: none;
   }
+  form {
+    max-width: none;
+  }
 
   #root {
     display: flex;

@@ -7,8 +7,8 @@ import {
   LinkButton,
 } from '../../../styles/General.styles';
 import Radio from '../../../styles/RadioButton';
-import { InputContainer } from '../Auth/Auth.styles';
-import { AreaContainer, ContentContainer } from '../Main.styles';
+import { InputContainer } from '../../../styles/Auth.styles';
+import { AreaContainer, ContentContainer } from '../../../styles/Main.styles';
 import { StyleSheetManager } from 'styled-components';
 import {
   changeToAuthorMode,
@@ -101,6 +101,10 @@ const ChangeToAuthor = () => {
       <h1>Change to author mode</h1>
       <h2>Please tell a bit more about yourself</h2>
       <InputContainer>
+        <Label htmlFor='image'>Image: </Label>
+        <input type='file' name='image' onChange={handleImageChange} />
+      </InputContainer>
+      <InputContainer>
         <Label htmlFor='name'>Name: </Label>
         <StyleSheetManager shouldForwardProp={(prop) => prop !== 'lightbg'}>
           <InputText
@@ -118,6 +122,7 @@ const ChangeToAuthor = () => {
           name='description'
           value={formData.description}
           onChange={handleInputChange}
+          defaultValue='Tell something about yourself'
         />
       </AreaContainer>
       <InputContainer>
@@ -149,12 +154,6 @@ const ChangeToAuthor = () => {
           />
         </Flex>
       </InputContainer>
-
-      <InputContainer>
-        <Label htmlFor='image'>Image: </Label>
-        <input type='file' name='image' onChange={handleImageChange} />
-      </InputContainer>
-
       <LinkButton onClick={handleSubmit}>Save</LinkButton>
     </ContentContainer>
   );

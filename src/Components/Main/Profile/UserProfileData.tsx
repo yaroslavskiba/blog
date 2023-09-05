@@ -6,9 +6,7 @@ import {
   UserHighlights,
   UserStatistics,
   ImgComponent,
-  LinkComponent,
-} from '../Main.styles';
-import { TbExchange } from 'react-icons/tb';
+} from '../../../styles/Main.styles';
 
 const UserProfileData = () => {
   const user = auth.currentUser;
@@ -53,10 +51,6 @@ const UserProfileData = () => {
         <UserHighlights>Gender:</UserHighlights>
         <UserStatistics>{gender}</UserStatistics>
       </UserInfoContainer>
-      <LinkComponent to='/change_to_author'>
-        <TbExchange />
-        Change to author mode
-      </LinkComponent>
     </FlexDisplayColumn>
   );
 };

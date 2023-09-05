@@ -56,8 +56,8 @@ export const UserStatistics = styled.div`
 
 export const ImgComponent = styled.img`
   width: 200px;
+  height: 200px;
   border: 3px solid ${(props) => props.theme.colors.summaryTextColor};
-  height: 180px;
   margin: 0 5px 20px 5px;
 `;
 

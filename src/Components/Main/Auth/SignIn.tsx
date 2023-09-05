@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { Label, InputText, LinkButton } from '../../../styles/General.styles';
-import { AuthError, AuthForm, InputContainer } from './Auth.styles';
+import {
+  AuthError,
+  AuthForm,
+  InputContainer,
+} from '../../../styles/Auth.styles';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from './auth.fucn';
 
