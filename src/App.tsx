@@ -17,10 +17,8 @@ import SignIn from './Components/Main/Auth/SignIn';
 import SignUp from './Components/Main/Auth/SignUp';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { fetchUserData } from './app/slices/userSlice';
-import { useAppDispatch, useAppSelector } from './app/hooks';
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { useAppDispatch } from './app/hooks';
+import ChangeToAuthor from './Components/Main/Profile/ChangeToAuthor';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -50,12 +48,14 @@ function App() {
       <GlobalStyles />
       <ErrorBoundary>
         <Routes>
-          <Route path='*' element={<NotFound />} />
           <Route path='/' element={<Wrapper />}>
             <Route path='signUp' element={<SignUp />} />
             <Route path='signIn' element={<SignIn />} />
             <Route path='profile' element={<Profile />} />
+            <Route path='change_to_author' element={<ChangeToAuthor />} />
           </Route>
+
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </ErrorBoundary>
     </ThemeProvider>

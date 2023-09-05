@@ -34,16 +34,31 @@ export const LinkComponent = styled(Link)`
 `;
 
 export const UserInfoContainer = styled.div`
-  padding: 0 30px;
+  margin: 0 30px;
   display: flex;
+  flex-wrap: wrap;
 `;
 
 export const UserHighlights = styled.div`
-  flex: 0 0 15%;
+  flex: 0 0 25%;
   color: ${(props) => props.theme.colors.summaryTextColor};
 `;
 
 export const UserStatistics = styled.div`
-  flex: 0 0 85%;
+  flex: 0 0 75%;
   letter-spacing: 1px;
+`;
+
+export const ImgComponent = styled.img`
+  width: 200px;
+  height: 180px;
+  margin: 0 5px 20px 5px;
+`;
+
+export const AreaContainer = styled.div`
+  width: 100%;
+  max-height: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 `;

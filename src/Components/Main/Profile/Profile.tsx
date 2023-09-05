@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import Reader from './Reader';
 import { useAppSelector } from '../../../app/hooks';
 import Author from './Author';
+import { VscSignOut } from 'react-icons/vsc';
+import { LinkButton } from '../../../styles/General.styles';
 
 const Profile = () => {
   const user = auth.currentUser;
@@ -19,6 +21,15 @@ const Profile = () => {
     }
   }, []);
 
+  const handleSignOut = async () => {
+    try {
+      await auth.signOut();
+      navigate('/');
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
+
   return (
     <ContentContainer>
       <LinkComponent to='/'>
@@ -26,6 +37,10 @@ const Profile = () => {
         Main
       </LinkComponent>
       {status === 'Reader' ? <Reader /> : <Author />}
+      <LinkButton onClick={handleSignOut}>
+        <VscSignOut />
+        Sign Out
+      </LinkButton>
     </ContentContainer>
   );
 };

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 export const HeaderContainer = styled.div`
-  min-height: 55px;
+  min-height: 75px;
   width: 100%;
   background-color: ${(props) => props.theme.colors.articleBackgroundColor};
   display: flex;
