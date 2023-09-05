@@ -47,7 +47,6 @@ export const InputText = styled.input<{
 `;
 
 export const TextArea = styled.textarea`
-  resize: none;
   max-width: 450px;
   min-width: 300px;
   width: 100%;

@@ -1,46 +1,53 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+# React Blog App
 
-## Available Scripts
+## Authors
 
-In the project directory, you can run:
+- [@yaroslavskiba](https://www.github.com/yaroslavskiba)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Install blog-app with npm
 
-### `npm test`
+```bash
+    git clone https://github.com/yaroslavskiba/blog.git
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    sudo npm install 
 
-### `npm run build`
+    cd blog
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    npm start
+```
+    
+## Technologies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React
+- Redux Toolkit
+- React Router
+- Firebase (firestore, storage, Authentication)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Libraries 
 
-### `npm run eject`
+- styled-components
+- react-firebase-hooks
+- react-icons
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Lib styled components
+### General styles:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `<Label />`  `<label></label>`
+- `<InputText />` `<input type="text">`
+- `<TextArea />` `<textarea>`
+- `<LinkButton />` `<button></button>`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- `<FlexDisplayColumn />` `<div style="display: flex; flex-direction: column;"></div>`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- `<Flex />` `<div style="display: flex; flex-wrap: wrap;"></div>`
 
-## Learn More
+### Main styles:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `<ContentContainer />` Main container for some content
+- `<LinkComponent />` Link `as` Link from `React Router`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    Other styled-components are used for specific components and are not suitable for reuse
