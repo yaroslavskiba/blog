@@ -16,6 +16,8 @@ import {
 } from './ProfileUpdate.func';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../../App';
+import { useAppDispatch } from '../../../app/hooks';
+import { fetchUserData } from '../../../app/slices/userSlice';
 
 interface FormDataInterface {
   name: string;
@@ -26,6 +28,7 @@ interface FormDataInterface {
 }
 
 const ChangeToAuthor = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState<FormDataInterface>({
     name: '',
@@ -86,8 +89,8 @@ const ChangeToAuthor = () => {
         image: null,
       });
 
-      navigate('/');
-      window.location.reload();
+      dispatch(fetchUserData());
+      navigate('/profile');
     } catch (error) {
       console.log(error);
     }

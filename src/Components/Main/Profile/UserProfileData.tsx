@@ -10,14 +10,17 @@ import {
 } from '../Main.styles';
 import { TbExchange } from 'react-icons/tb';
 
-const Reader = () => {
+const UserProfileData = () => {
   const user = auth.currentUser;
-  const { name, description, status, rating, birthDate, gender } =
+  const { name, description, status, rating, birthDate, gender, image } =
     useAppSelector((state) => state.user);
 
   return (
     <FlexDisplayColumn>
-      <ImgComponent src='/img/readerImg.svg' alt='base profile img' />
+      <ImgComponent
+        src={image ? image : '/img/readerImg.svg'}
+        alt='base profile img'
+      />
       <UserInfoContainer>
         <UserHighlights>uId:</UserHighlights>
         <UserStatistics>{user?.uid}</UserStatistics>
@@ -58,4 +61,4 @@ const Reader = () => {
   );
 };
 
-export default Reader;
+export default UserProfileData;

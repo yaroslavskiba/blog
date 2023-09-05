@@ -9,6 +9,7 @@ interface UserInterface {
   birthDate: string;
   gender: '';
   status: 'Reader' | 'Author';
+  image: null | string;
   isLoading: null | boolean;
 }
 
@@ -19,6 +20,7 @@ const initialState: UserInterface = {
   birthDate: '',
   gender: '',
   status: 'Reader',
+  image: null,
   isLoading: null,
 };
 
@@ -59,6 +61,7 @@ const userSlice = createSlice({
       state.rating = action.payload?.rating || null;
       state.birthDate = action.payload?.birthDate || '';
       state.gender = action.payload?.gender || '';
+      state.image = action.payload?.image || null;
       state.status = action.payload?.status || '';
     });
 

@@ -42,15 +42,21 @@ export const UserInfoContainer = styled.div`
 export const UserHighlights = styled.div`
   flex: 0 0 25%;
   color: ${(props) => props.theme.colors.summaryTextColor};
+  padding-right: 5px;
 `;
 
 export const UserStatistics = styled.div`
   flex: 0 0 75%;
   letter-spacing: 1px;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const ImgComponent = styled.img`
   width: 200px;
+  border: 3px solid ${(props) => props.theme.colors.summaryTextColor};
   height: 180px;
   margin: 0 5px 20px 5px;
 `;
