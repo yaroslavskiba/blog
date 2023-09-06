@@ -1,4 +1,4 @@
-import { useState, useRef, ChangeEvent, useId } from 'react';
+import { useState, useRef, ChangeEvent } from 'react';
 import { StyleSheetManager } from 'styled-components';
 import {
   InputContainer,
@@ -16,16 +16,16 @@ import {
 import MarkedPanel from './MarkedPanel';
 import { createPost } from './createPost.fucn';
 import { useNavigate } from 'react-router-dom';
+import { getPosts } from '../../../../app/slices/postsSlice';
+import { useAppDispatch } from '../../../../app/hooks';
 
 const CreatePost = () => {
-  const id = useId();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState(``);
   const [postText, setPostText] = useState(``);
-
-  console.log(title, description, postText);
 
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
@@ -40,7 +40,6 @@ const CreatePost = () => {
 
   const handleSubmit = async () => {
     const updatedFormData = {
-      id,
       title,
       description,
       postText,
@@ -57,7 +56,7 @@ const CreatePost = () => {
 
     try {
       await createPost(updatedFormData);
-
+      dispatch(getPosts());
       setTitle('');
       setDescription(``);
       setPostText(``);

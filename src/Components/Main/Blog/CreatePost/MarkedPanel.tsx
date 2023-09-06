@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   MarkedButton,
   MarkedPanelButtons,
@@ -13,31 +13,31 @@ interface MarkedInterface {
 
 const MarkedPanel = ({ setPostText }: MarkedInterface) => {
   const bold = () => {
-    setPostText((prev) => prev + '**');
+    setPostText((prev) => prev + '** **');
   };
 
   const italic = () => {
-    setPostText((prev) => prev + '*');
+    setPostText((prev) => prev + '* *');
   };
 
   const title = () => {
-    setPostText((prev) => prev + '# ');
+    setPostText((prev) => prev + '# \n<hr>\n');
   };
 
   const subTitle = () => {
-    setPostText((prev) => prev + '## ');
+    setPostText((prev) => prev + '## \n<hr>\n');
   };
 
   const subSubTitle = () => {
-    setPostText((prev) => prev + '### ');
+    setPostText((prev) => prev + '### \n<hr>\n');
   };
 
   const numberList = () => {
-    setPostText((prev) => prev + '1. ');
+    setPostText((prev) => prev + '\n1. ');
   };
 
   const list = () => {
-    setPostText((prev) => prev + '- ');
+    setPostText((prev) => prev + '\n- ');
   };
 
   const link = () => {
@@ -45,7 +45,7 @@ const MarkedPanel = ({ setPostText }: MarkedInterface) => {
   };
 
   const blockQuote = () => {
-    setPostText((prev) => prev + '> ');
+    setPostText((prev) => prev + '\n> ');
   };
 
   return (

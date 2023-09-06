@@ -9,7 +9,7 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${(props) => props.theme.colors.articleBackgroundColor};
+  gap: 35px;
 `;
 
 export const ContentContainer = styled.div`

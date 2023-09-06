@@ -5,7 +5,6 @@ interface PostData {
   title: string;
   description: string;
   postText: string;
-  id: string;
 }
 
 const calculateReadingTime = (text: string): number => {
@@ -19,24 +18,21 @@ const calculateReadingTime = (text: string): number => {
 };
 
 export const createPost = async (data: PostData) => {
-  const { title, description, postText, id } = data;
+  const { title, description, postText } = data;
   const user = auth.currentUser;
   const currentDate = new Date();
-  const formattedDate = `${currentDate.getDate()}-${
+  const formattedDate = `${currentDate.getDate()}.${
     currentDate.getMonth() + 1
-  }-${currentDate.getFullYear()}`;
-  const formattedTime = `${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
+  }.${currentDate.getFullYear()}`;
   const readingTime = calculateReadingTime(postText) + 'min';
 
   const dateForSend = {
-    id,
     creator: user?.uid,
     creatorEmail: user?.email,
     date: formattedDate,
-    timestamp: formattedTime,
     title,
-    description: description.replace(/\n/g, '<br>'),
-    postText: postText.replace(/\n/g, '<br> '),
+    description,
+    postText,
     readingTime,
     postRating: 0,
   };

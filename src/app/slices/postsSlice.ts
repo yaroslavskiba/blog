@@ -7,7 +7,6 @@ interface PostInterface {
   creator: string;
   creatorEmail: string;
   date: string;
-  timestamp: string;
   title: string;
   description: string;
   postText: string;
@@ -35,7 +34,7 @@ const postsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getPosts.fulfilled, (state, action) => {
+    builder.addCase(getPosts.fulfilled, (_state, action) => {
       return action.payload;
     });
   },

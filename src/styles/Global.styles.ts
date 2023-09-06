@@ -75,7 +75,12 @@ export const GlobalStyles = createGlobalStyle`
   form {
     max-width: none;
   }
-
+  hr {
+    height: 3px;
+    width: 100%;
+    margin: 15px auto;
+    background-color: ${(props) => props.theme.colors.DelemiterColor};
+  }
   #root {
     display: flex;
     flex-direction: column;
