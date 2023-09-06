@@ -16,7 +16,7 @@ export const PostTextArea = styled.textarea<{
   min-width: 300px;
   width: 100%;
   min-height: ${(props) => (props.post === 'true' ? '360px' : '95px')};
-  max-height: 1100px;
+  max-height: 900px;
   border: 3px solid ${(props) => props.theme.colors.summaryTextColor};
   background-color: ${(props) => props.theme.colors.articleBackgroundColor};
   font-size: 22px;
@@ -37,6 +37,7 @@ export const MarkedPanelButtons = styled.div`
   border: 3px solid ${(props) => props.theme.colors.summaryTextColor};
   border-bottom: none;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 25px;
 `;
@@ -45,4 +46,13 @@ export const MarkedButton = styled.button`
   font-size: 20px;
   color: ${(props) => props.theme.colors.linkColor};
   font-weight: 700;
+`;
+
+export const CreatePostError = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55px;
+  background-color: ${(props) => props.theme.colors.danger};
 `;

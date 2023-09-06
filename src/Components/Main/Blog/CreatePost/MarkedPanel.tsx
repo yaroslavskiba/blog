@@ -12,52 +12,40 @@ interface MarkedInterface {
 }
 
 const MarkedPanel = ({ setPostText }: MarkedInterface) => {
-  const insertTextAtCursorPosition = (text: string) => {
-    setPostText((prevText) => {
-      const input = prevText;
-      const startPos = input.length;
-      const endPos = input.length;
-
-      const textBeforeCursor = input.slice(0, startPos);
-      const textAfterCursor = input.slice(endPos);
-      return textBeforeCursor + text + textAfterCursor;
-    });
-  };
-
   const bold = () => {
-    insertTextAtCursorPosition('**');
+    setPostText((prev) => prev + '**');
   };
 
   const italic = () => {
-    insertTextAtCursorPosition('*');
+    setPostText((prev) => prev + '*');
   };
 
   const title = () => {
-    insertTextAtCursorPosition('# ');
+    setPostText((prev) => prev + '# ');
   };
 
   const subTitle = () => {
-    insertTextAtCursorPosition('## ');
+    setPostText((prev) => prev + '## ');
   };
 
   const subSubTitle = () => {
-    insertTextAtCursorPosition('### ');
+    setPostText((prev) => prev + '### ');
   };
 
   const numberList = () => {
-    insertTextAtCursorPosition('1. ');
+    setPostText((prev) => prev + '1. ');
   };
 
   const list = () => {
-    insertTextAtCursorPosition('- ');
+    setPostText((prev) => prev + '- ');
   };
 
   const link = () => {
-    insertTextAtCursorPosition('<>');
+    setPostText((prev) => prev + '<>');
   };
 
   const blockQuote = () => {
-    insertTextAtCursorPosition('> ');
+    setPostText((prev) => prev + '> ');
   };
 
   return (

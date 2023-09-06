@@ -39,8 +39,6 @@ const SignUp = () => {
     confirmPassword: 'false',
   });
 
-  const [validation, setValidation] = useState(true);
-
   const handleRegistration = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (formData.password === formData.confirmPassword) {
@@ -52,14 +50,21 @@ const SignUp = () => {
         password: '',
         confirmPassword: '',
       });
+
+      setError({
+        email: 'false',
+        password: 'false',
+        confirmPassword: 'false',
+      });
+
       navigate('/');
     } else {
-      setValidation(false);
       setError({
         email: 'false',
         password: 'true',
         confirmPassword: 'true',
       });
+      return;
     }
   };
 
@@ -88,13 +93,7 @@ const SignUp = () => {
           />
         </InputContainer>
       ))}
-      {validation ? (
-        <LinkButton type='submit'>Save</LinkButton>
-      ) : (
-        <LinkButton type='submit' disabled>
-          Save
-        </LinkButton>
-      )}
+      <LinkButton type='submit'>Save</LinkButton>
     </AuthForm>
   );
 };

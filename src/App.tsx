@@ -20,6 +20,8 @@ import { fetchUserData } from './app/slices/userSlice';
 import { useAppDispatch } from './app/hooks';
 import ChangeToAuthor from './Components/Main/Profile/ChangeToAuthor';
 import CreatePost from './Components/Main/Blog/CreatePost/CreatePost';
+import Posts from './Components/Main/Blog/Posts';
+import { getPosts } from './app/slices/postsSlice';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -42,6 +44,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchUserData());
+    dispatch(getPosts());
   }, [user, dispatch]);
 
   return (
@@ -55,6 +58,7 @@ function App() {
             <Route path='profile' element={<Profile />} />
             <Route path='change_to_author' element={<ChangeToAuthor />} />
             <Route path='createPost' element={<CreatePost />} />
+            <Route path='posts' element={<Posts />} />
           </Route>
 
           <Route path='*' element={<NotFound />} />

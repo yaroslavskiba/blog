@@ -1,22 +1,29 @@
-import { useState, useRef, ChangeEvent } from 'react';
+import { useState, useRef, ChangeEvent, useId } from 'react';
 import { StyleSheetManager } from 'styled-components';
 import {
   InputContainer,
   InputText,
   Label,
+  LinkButton,
 } from '../../../../styles/General.styles';
 import { ContentContainer } from '../../../../styles/Main.styles';
 import {
+  CreatePostError,
   MarkedEditorContainer,
   PostTextArea,
   PostTextAreaContainer,
 } from '../../../../styles/CreatePost.styles';
 import MarkedPanel from './MarkedPanel';
+import { createPost } from './createPost.fucn';
+import { useNavigate } from 'react-router-dom';
 
 const CreatePost = () => {
+  const id = useId();
+  const navigate = useNavigate();
+  const [error, setError] = useState(false);
   const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [postText, setPostText] = useState('');
+  const [description, setDescription] = useState(``);
+  const [postText, setPostText] = useState(``);
 
   console.log(title, description, postText);
 
@@ -31,9 +38,44 @@ const CreatePost = () => {
     setPostText(e.target.value);
   };
 
+  const handleSubmit = async () => {
+    const updatedFormData = {
+      id,
+      title,
+      description,
+      postText,
+    };
+
+    if (
+      title.length === 0 ||
+      description.length === 0 ||
+      postText.length === 0
+    ) {
+      setError(true);
+      return;
+    }
+
+    try {
+      await createPost(updatedFormData);
+
+      setTitle('');
+      setDescription(``);
+      setPostText(``);
+
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <ContentContainer>
       <h1>Create Post:</h1>
+      {error && (
+        <CreatePostError>
+          There must be no empty fields in the form.
+        </CreatePostError>
+      )}
       <InputContainer>
         <Label>Title</Label>
         <StyleSheetManager shouldForwardProp={(prop) => prop !== 'lightbg'}>
@@ -75,6 +117,8 @@ const CreatePost = () => {
           </StyleSheetManager>
         </MarkedEditorContainer>
       </PostTextAreaContainer>
+
+      <LinkButton onClick={handleSubmit}>Save</LinkButton>
     </ContentContainer>
   );
 };
