@@ -57,7 +57,7 @@ const SignUp = () => {
         confirmPassword: 'false',
       });
 
-      navigate('/');
+      navigate('/posts');
     } else {
       setError({
         email: 'false',

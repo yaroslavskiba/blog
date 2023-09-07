@@ -61,7 +61,7 @@ const CreatePost = () => {
       setDescription(``);
       setPostText(``);
 
-      navigate('/');
+      navigate('/posts');
     } catch (error) {
       console.log(error);
     }

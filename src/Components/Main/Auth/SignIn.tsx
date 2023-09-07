@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Label, InputText, LinkButton, InputContainer } from '../../../styles/General.styles';
 import {
-  AuthError,
-  AuthForm,
-} from '../../../styles/Auth.styles';
+  Label,
+  InputText,
+  LinkButton,
+  InputContainer,
+} from '../../../styles/General.styles';
+import { AuthError, AuthForm } from '../../../styles/Auth.styles';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from './auth.fucn';
 
@@ -36,7 +38,7 @@ const SignIn = () => {
       password: '',
     });
 
-    navigate('/');
+    navigate('/posts');
   };
 
   const handleChange = (e: { target: { name: string; value: string } }) => {

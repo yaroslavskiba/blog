@@ -33,6 +33,18 @@ export const LinkComponent = styled(Link)`
   color: ${(props) => props.theme.colors.linkColor};
 `;
 
+export const HeaderLinkComponent = styled(Link)`
+  font-size: 1.7em;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  color: ${(props) => props.theme.colors.linkColor};
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 export const UserInfoContainer = styled.div`
   margin: 0 30px;
   display: flex;

@@ -8,7 +8,7 @@ export const PostContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 0;
+  padding: 25px 0;
   margin: 0 auto;
 `;
 
@@ -89,10 +89,25 @@ export const PostContent = styled.p`
   }
 
   blockquote {
+    font-family: monospace;
+    letter-spacing: 2px;
     margin: 15px;
     padding: 15px;
     border-radius: 10px;
-    background-color: ${(props) => props.theme.colors.quoteTextColor};
     font-style: italic;
+    color: ${(props) => props.theme.colors.summaryTextColor};
+  }
+
+  code {
+    font-size: 90%;
+    font-family: monospace;
+    display: block;
+    width: 100%;
+    font-style: italic;
+    letter-spacing: 2px;
+    line-height: 35px;
+    padding: 15px 0;
+    white-space: pre-wrap;
+    color: ${(props) => props.theme.colors.summaryTextColor};
   }
 `;

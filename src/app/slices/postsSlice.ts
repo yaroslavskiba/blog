@@ -4,7 +4,6 @@ import { collection, getDocs } from 'firebase/firestore';
 
 interface PostInterface {
   id: string;
-  creator: string;
   creatorEmail: string;
   date: string;
   title: string;

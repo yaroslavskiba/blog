@@ -30,6 +30,7 @@ interface FormDataInterface {
 const ChangeToAuthor = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState<FormDataInterface>({
     name: '',
     description: '',
@@ -42,7 +43,7 @@ const ChangeToAuthor = () => {
   useEffect(() => {
     const user = auth.currentUser;
     if (!user) {
-      navigate('/');
+      navigate('/posts');
     }
   });
 

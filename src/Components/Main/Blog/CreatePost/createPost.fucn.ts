@@ -27,7 +27,6 @@ export const createPost = async (data: PostData) => {
   const readingTime = calculateReadingTime(postText) + 'min';
 
   const dateForSend = {
-    creator: user?.uid,
     creatorEmail: user?.email,
     date: formattedDate,
     title,

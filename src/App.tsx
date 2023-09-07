@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import NotFound from './NotFound/NotFound.component';
 import { GlobalStyles } from './styles/Global.styles';
 import { ThemeProvider } from 'styled-components';
@@ -22,6 +23,7 @@ import ChangeToAuthor from './Components/Main/Profile/ChangeToAuthor';
 import CreatePost from './Components/Main/Blog/CreatePost/CreatePost';
 import Posts from './Components/Main/Blog/Posts';
 import { getPosts } from './app/slices/postsSlice';
+import Post from './Components/Main/Blog/Post';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -41,10 +43,12 @@ export const db = getFirestore(firebaseApp);
 function App() {
   const dispatch = useAppDispatch();
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchUserData());
     dispatch(getPosts());
+    navigate('/posts');
   }, [user, dispatch]);
 
   return (
@@ -53,14 +57,14 @@ function App() {
       <ErrorBoundary>
         <Routes>
           <Route path='/' element={<Wrapper />}>
+            <Route path='posts' element={<Posts />} />
+            <Route path='posts/:id' element={<Post />} />
             <Route path='signUp' element={<SignUp />} />
             <Route path='signIn' element={<SignIn />} />
             <Route path='profile' element={<Profile />} />
             <Route path='change_to_author' element={<ChangeToAuthor />} />
             <Route path='createPost' element={<CreatePost />} />
-            <Route path='posts' element={<Posts />} />
           </Route>
-
           <Route path='*' element={<NotFound />} />
         </Routes>
       </ErrorBoundary>

@@ -32,7 +32,7 @@ const Profile = () => {
 
   return (
     <ContentContainer>
-      <LinkComponent to='/'>
+      <LinkComponent to='/posts'>
         <AiOutlineArrowLeft />
         Main
       </LinkComponent>

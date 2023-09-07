@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   MarkedButton,
   MarkedPanelButtons,
@@ -6,6 +6,7 @@ import {
 import { ImBold, ImItalic, ImListNumbered, ImList } from 'react-icons/im';
 import { HiLink } from 'react-icons/hi';
 import { GrBlockQuote } from 'react-icons/gr';
+import { BsCodeSlash } from 'react-icons/bs';
 
 interface MarkedInterface {
   setPostText: React.Dispatch<React.SetStateAction<string>>;
@@ -13,23 +14,23 @@ interface MarkedInterface {
 
 const MarkedPanel = ({ setPostText }: MarkedInterface) => {
   const bold = () => {
-    setPostText((prev) => prev + '** **');
+    setPostText((prev) => prev + '**/Text here/**');
   };
 
   const italic = () => {
-    setPostText((prev) => prev + '* *');
+    setPostText((prev) => prev + '*/Text here/*');
   };
 
   const title = () => {
-    setPostText((prev) => prev + '# \n<hr>\n');
+    setPostText((prev) => prev + '# /Title here/\n<hr>\n/Text here/');
   };
 
   const subTitle = () => {
-    setPostText((prev) => prev + '## \n<hr>\n');
+    setPostText((prev) => prev + '## /SubTitle here/\n<hr>\n/Text here/');
   };
 
   const subSubTitle = () => {
-    setPostText((prev) => prev + '### \n<hr>\n');
+    setPostText((prev) => prev + '### /SubSubTitle here/\n<hr>\n/Text here/');
   };
 
   const numberList = () => {
@@ -41,11 +42,17 @@ const MarkedPanel = ({ setPostText }: MarkedInterface) => {
   };
 
   const link = () => {
-    setPostText((prev) => prev + '<>');
+    setPostText((prev) => prev + '</Link here/>');
   };
 
   const blockQuote = () => {
-    setPostText((prev) => prev + '\n> ');
+    setPostText((prev) => prev + '\n> /Quote ends after double new lines/');
+  };
+
+  const code = () => {
+    setPostText(
+      (prev) => prev + '\n```/Programing lang here/\n/Code here/\n```'
+    );
   };
 
   return (
@@ -70,6 +77,9 @@ const MarkedPanel = ({ setPostText }: MarkedInterface) => {
       </MarkedButton>
       <MarkedButton onClick={blockQuote}>
         <GrBlockQuote />
+      </MarkedButton>
+      <MarkedButton onClick={code}>
+        <BsCodeSlash />
       </MarkedButton>
     </MarkedPanelButtons>
   );

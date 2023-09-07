@@ -13,6 +13,7 @@ import { MdDateRange } from 'react-icons/md';
 import { BsGraphUpArrow } from 'react-icons/bs';
 import { AiOutlineFieldTime } from 'react-icons/ai';
 import { marked } from 'marked';
+import { HeaderLinkComponent } from '../../../styles/Main.styles';
 
 marked.use({
   pedantic: false,
@@ -22,11 +23,21 @@ marked.use({
 
 const Posts = () => {
   const posts = useAppSelector((state) => state.posts);
-
   const compileMarkdown = (text: string) => {
     if (text) {
       return { __html: marked(text) };
     }
+  };
+
+  const truncateText = (text: string) => {
+    if (text.length > 350) {
+      return text.slice(0, 1000) + '...';
+    }
+    return text;
+  };
+
+  const firstLetter = (title: string) => {
+    return title[0].toUpperCase() + title.slice(1);
   };
 
   return (
@@ -34,7 +45,6 @@ const Posts = () => {
       {posts.map(
         ({
           id,
-          creator,
           creatorEmail,
           date,
           title,
@@ -46,8 +56,10 @@ const Posts = () => {
           return (
             <PostContainer key={id}>
               <PostTextSpace>
-                <h1>{title}</h1>
-                <DescriptionSpan>{description}</DescriptionSpan>
+                <HeaderLinkComponent to={`/posts/${id}`}>
+                  {firstLetter(title)}
+                </HeaderLinkComponent>
+                <DescriptionSpan>{firstLetter(description)}</DescriptionSpan>
                 <hr />
                 <PostAuthorContainer>
                   <>
@@ -76,7 +88,9 @@ const Posts = () => {
                 </PostAuthorContainer>
                 <hr />
                 <PostContent
-                  dangerouslySetInnerHTML={compileMarkdown(postText)}
+                  dangerouslySetInnerHTML={compileMarkdown(
+                    truncateText(postText)
+                  )}
                 />
               </PostTextSpace>
             </PostContainer>
