@@ -31,7 +31,8 @@ export const InputText = styled.input<{
   lightbg?: string;
 }>`
   width: 100%;
-  height: 75px;
+  max-width: 480px;
+  height: 55px;
   background-color: ${(props) =>
     props.lightbg === 'light'
       ? props.theme.colors.articleBackgroundColor

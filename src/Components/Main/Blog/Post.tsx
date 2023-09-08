@@ -13,8 +13,11 @@ import {
   AuthorSpan,
   PostData,
   PostContent,
+  PostViewContainer,
 } from '../../../styles/Posts.styles';
 import { marked } from 'marked';
+import Comments from './Comments';
+import ControlPanel from './ControlPanel';
 
 const Post = () => {
   const { id } = useParams();
@@ -35,46 +38,51 @@ const Post = () => {
   };
 
   return (
-    <PostContainer>
-      <LinkComponent to='/posts'>
-        <AiOutlineArrowLeft />
-        Main
-      </LinkComponent>
-      <PostTextSpace>
-        <h1>{firstLetter(post?.title)}</h1>
-        <DescriptionSpan>{firstLetter(post?.description)}</DescriptionSpan>
-        <hr />
-        <PostAuthorContainer>
-          <>
-            <AuthorSpan>
-              <GiMailbox />
-              By {post?.creatorEmail}
-            </AuthorSpan>
-          </>
-          <PostData>
-            <AuthorSpan>
-              <MdDateRange />
-              {post?.date}
-            </AuthorSpan>
+    <PostViewContainer>
+      <PostContainer>
+        <LinkComponent to='/posts'>
+          <AiOutlineArrowLeft />
+          Main
+        </LinkComponent>
+        <PostTextSpace>
+          <h1>{firstLetter(post?.title)}</h1>
+          <DescriptionSpan>{firstLetter(post?.description)}</DescriptionSpan>
+          <hr />
+          <PostAuthorContainer>
+            <>
+              <AuthorSpan>
+                <GiMailbox />
+                By {post?.creatorEmail}
+              </AuthorSpan>
+            </>
+            <PostData>
+              <AuthorSpan>
+                <MdDateRange />
+                {post?.date}
+              </AuthorSpan>
 
-            <AuthorSpan>
-              <AiOutlineFieldTime />
-              {post?.readingTime}
-            </AuthorSpan>
-          </PostData>
-          <>
-            <AuthorSpan>
-              <BsGraphUpArrow />
-              {post?.postRating}
-            </AuthorSpan>
-          </>
-        </PostAuthorContainer>
-        <hr />
-        <PostContent
-          dangerouslySetInnerHTML={compileMarkdown(post?.postText)}
-        />
-      </PostTextSpace>
-    </PostContainer>
+              <AuthorSpan>
+                <AiOutlineFieldTime />
+                {post?.readingTime}
+              </AuthorSpan>
+            </PostData>
+            <>
+              <AuthorSpan>
+                <BsGraphUpArrow />
+                {post?.postRating}
+              </AuthorSpan>
+            </>
+          </PostAuthorContainer>
+          <hr />
+          <PostContent
+            dangerouslySetInnerHTML={compileMarkdown(post?.postText)}
+          />
+          <hr />
+          <ControlPanel />
+        </PostTextSpace>
+      </PostContainer>
+      <Comments />
+    </PostViewContainer>
   );
 };
 

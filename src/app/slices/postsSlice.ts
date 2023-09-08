@@ -1,6 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { db } from '../../App';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+
+interface CommentsInterface {
+  comment: string;
+  creator: string;
+  creatorUid: string;
+  date: string;
+}
 
 interface PostInterface {
   id: string;
@@ -11,7 +18,18 @@ interface PostInterface {
   postText: string;
   readingTime: string;
   postRating: number;
+  comments: CommentsInterface[];
 }
+
+export const updateComments = createAsyncThunk(
+  'posts/updateComments',
+  async (postId: string) => {
+    const postRef = doc(db, 'posts', postId);
+    const postSnap = await getDoc(postRef);
+
+    return postSnap.data()?.comments;
+  }
+);
 
 export const getPosts = createAsyncThunk('posts/getPosts', async () => {
   const postsRef = collection(db, 'posts');
@@ -33,9 +51,19 @@ const postsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getPosts.fulfilled, (_state, action) => {
-      return action.payload;
-    });
+    builder
+      .addCase(getPosts.fulfilled, (_state, action) => {
+        return action.payload;
+      })
+      .addCase(updateComments.fulfilled, (state, action) => {
+        const postIndex = state.findIndex((p) => p.id === action.meta.arg);
+
+        if (postIndex >= 0) {
+          state[postIndex].comments = action.payload;
+        }
+
+        return state;
+      });
   },
 });
 

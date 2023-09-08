@@ -11,9 +11,10 @@ import {
 import { GiMailbox } from 'react-icons/gi';
 import { MdDateRange } from 'react-icons/md';
 import { BsGraphUpArrow } from 'react-icons/bs';
-import { AiOutlineFieldTime } from 'react-icons/ai';
+import { AiOutlineFieldTime, AiOutlineLink } from 'react-icons/ai';
 import { marked } from 'marked';
 import { HeaderLinkComponent } from '../../../styles/Main.styles';
+import ControlPanel from './ControlPanel';
 
 marked.use({
   pedantic: false,
@@ -57,9 +58,12 @@ const Posts = () => {
             <PostContainer key={id}>
               <PostTextSpace>
                 <HeaderLinkComponent to={`/posts/${id}`}>
+                  <AiOutlineLink />
                   {firstLetter(title)}
                 </HeaderLinkComponent>
-                <DescriptionSpan>{firstLetter(description)}</DescriptionSpan>
+                <DescriptionSpan>
+                  {firstLetter(truncateText(description))}
+                </DescriptionSpan>
                 <hr />
                 <PostAuthorContainer>
                   <>
@@ -92,6 +96,8 @@ const Posts = () => {
                     truncateText(postText)
                   )}
                 />
+                <hr />
+                <ControlPanel />
               </PostTextSpace>
             </PostContainer>
           );

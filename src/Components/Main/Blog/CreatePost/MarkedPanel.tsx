@@ -26,11 +26,11 @@ const MarkedPanel = ({ setPostText }: MarkedInterface) => {
   };
 
   const subTitle = () => {
-    setPostText((prev) => prev + '## /SubTitle here/\n<hr>\n/Text here/');
+    setPostText((prev) => prev + '## /SubTitle here/\n/Text here/');
   };
 
   const subSubTitle = () => {
-    setPostText((prev) => prev + '### /SubSubTitle here/\n<hr>\n/Text here/');
+    setPostText((prev) => prev + '### /SubSubTitle here/\n/Text here/');
   };
 
   const numberList = () => {

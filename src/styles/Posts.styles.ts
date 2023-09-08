@@ -111,3 +111,58 @@ export const PostContent = styled.p`
     color: ${(props) => props.theme.colors.summaryTextColor};
   }
 `;
+
+export const PostViewContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+`;
+
+export const CommentsContainer = styled.div`
+  background-color: ${(props) => props.theme.colors.articleBackgroundColor};
+  width: 90%;
+  margin: 0 auto;
+  padding: 15px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
+
+export const CommentsViewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+`;
+
+export const CommentView = styled.div`
+  padding: 5px 5px 5px 15px;
+  border-left: 3px solid ${(props) => props.theme.colors.DelemiterColor};
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+export const CommentAuthor = styled.span`
+  color: ${(props) => props.theme.colors.summaryTextColor};
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const PostControlPanel = styled.div`
+  display: flex;
+  gap: 25px;
+  height: max-content;
+  align-items: center;
+`;
+
+export const ControlButton = styled.button`
+  color: ${(props) => props.theme.colors.danger};
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: max-content;
+`;
