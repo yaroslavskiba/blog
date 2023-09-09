@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Outlet, useNavigate } from 'react-router-dom';
 import { MainContainer } from '../../styles/Main.styles';
 import { useEffect } from 'react';
