@@ -12,7 +12,6 @@ import {
   LinkComponent,
 } from '../../../styles/Main.styles';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-import UserProfileData from './UserProfileData';
 
 interface OtherUserInterface {
   rating: number;
