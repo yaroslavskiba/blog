@@ -43,7 +43,7 @@ export const MarkedPanelButtons = styled.div`
 `;
 
 export const MarkedButton = styled.button`
-  font-size: 20px;
+  font-size: 22px;
   color: ${(props) => props.theme.colors.linkColor};
   font-weight: 700;
 `;

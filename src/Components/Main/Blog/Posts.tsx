@@ -24,6 +24,7 @@ marked.use({
 });
 
 const Posts = () => {
+  const status = useAppSelector((state) => state.user.status);
   const posts = useAppSelector((state) => state.posts);
   const compileMarkdown = (text: string) => {
     if (text) {
@@ -33,7 +34,7 @@ const Posts = () => {
 
   const truncateText = (text: string) => {
     if (text.length > 350) {
-      return text.slice(0, 1000) + '...';
+      return text.slice(0, 350) + '...';
     }
     return text;
   };
@@ -68,13 +69,23 @@ const Posts = () => {
                 </DescriptionSpan>
                 <hr />
                 <PostAuthorContainer>
-                  <AuthorSpan>
-                    <GiMailbox />
-                    By
-                    <AuthorLink to={`/user/${creator}`}>
-                      {creatorEmail}
-                    </AuthorLink>
-                  </AuthorSpan>
+                  {status === 'Author' ? (
+                    <>
+                      <AuthorSpan>
+                        <GiMailbox />
+                        By
+                        <AuthorLink to={`/user/${creator}`}>
+                          {creatorEmail}
+                        </AuthorLink>
+                      </AuthorSpan>
+                    </>
+                  ) : (
+                    <AuthorSpan>
+                      <GiMailbox />
+                      By {creatorEmail}
+                    </AuthorSpan>
+                  )}
+
                   <PostData>
                     <AuthorSpan>
                       <MdDateRange />
@@ -93,14 +104,12 @@ const Posts = () => {
                     </AuthorSpan>
                   </>
                 </PostAuthorContainer>
-                <hr />
                 <PostContent
                   dangerouslySetInnerHTML={compileMarkdown(
                     truncateText(postText)
                   )}
                 />
-                <hr />
-                <ControlPanel />
+                <ControlPanel postId={id} />
               </PostTextSpace>
             </PostContainer>
           );

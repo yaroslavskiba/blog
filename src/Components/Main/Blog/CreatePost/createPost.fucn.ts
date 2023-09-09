@@ -49,6 +49,7 @@ export const createPost = async (data: PostData) => {
     readingTime,
     postRating: 0,
     comments: [],
+    likes: [],
   };
 
   if (user) {

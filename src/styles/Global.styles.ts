@@ -6,7 +6,7 @@ export const GlobalStyles = createGlobalStyle`
     width: 100%;
     height: 100%;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 22px;
     line-height: 1.5;
     letter-spacing: 1.5;
     color: ${(props) => props.theme.colors.articleTextColor};

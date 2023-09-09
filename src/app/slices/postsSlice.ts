@@ -20,7 +20,18 @@ interface PostInterface {
   readingTime: string;
   postRating: number;
   comments: CommentsInterface[];
+  likes: string[];
 }
+
+export const updateLikes = createAsyncThunk(
+  'posts/updateLikes',
+  async (postId: string) => {
+    const postRef = doc(db, 'posts', postId);
+    const postSnap = await getDoc(postRef);
+
+    return postSnap.data()?.likes;
+  }
+);
 
 export const updateComments = createAsyncThunk(
   'posts/updateComments',
@@ -57,10 +68,23 @@ const postsSlice = createSlice({
         return action.payload;
       })
       .addCase(updateComments.fulfilled, (state, action) => {
-        const postIndex = state.findIndex((p) => p.id === action.meta.arg);
+        const postIndex = state.findIndex(
+          (post) => post.id === action.meta.arg
+        );
 
         if (postIndex >= 0) {
           state[postIndex].comments = action.payload;
+        }
+
+        return state;
+      })
+      .addCase(updateLikes.fulfilled, (state, action) => {
+        const postIndex = state.findIndex(
+          (post) => post.id === action.meta.arg
+        );
+
+        if (postIndex >= 0) {
+          state[postIndex].likes = action.payload;
         }
 
         return state;

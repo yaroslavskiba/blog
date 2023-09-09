@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 
 export const PostContainer = styled.div`
   word-wrap: break-word;
-  width: 85%;
+  width: 90%;
   height: max-content;
   background-color: ${(props) => props.theme.colors.articleBackgroundColor};
   display: flex;
@@ -14,7 +14,7 @@ export const PostContainer = styled.div`
 `;
 
 export const PostTextSpace = styled.div`
-  max-width: 55%;
+  max-width: 60%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -23,12 +23,12 @@ export const PostTextSpace = styled.div`
 
 export const DescriptionSpan = styled.span`
   color: ${(props) => props.theme.colors.summaryTextColor};
-  font-size: 22px;
+  font-size: 24px;
 `;
 
 export const AuthorSpan = styled.span`
   color: ${(props) => props.theme.colors.summaryTextColor};
-  font-size: 18px;
+  font-size: 22px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -48,7 +48,8 @@ export const PostData = styled.div`
 `;
 
 export const PostContent = styled.p`
-  font-size: 18px;
+  font-size: 22px;
+  line-height: 2rem;
 
   hr {
     width: 75%;
@@ -56,7 +57,7 @@ export const PostContent = styled.p`
   }
 
   h1 {
-    font-size: 22px;
+    font-size: 26px;
     &:before {
       content: '';
       background: ${(props) => props.theme.colors.DelemiterColor};
@@ -66,7 +67,7 @@ export const PostContent = styled.p`
   }
 
   h2 {
-    font-size: 20px;
+    font-size: 24px;
     &:before {
       content: '';
       background: ${(props) => props.theme.colors.DelemiterColor};
@@ -76,7 +77,7 @@ export const PostContent = styled.p`
   }
 
   h3 {
-    font-size: 18px;
+    font-size: 22px;
     &:before {
       content: '';
       background: ${(props) => props.theme.colors.DelemiterColor};
@@ -106,10 +107,11 @@ export const PostContent = styled.p`
     width: 100%;
     font-style: italic;
     letter-spacing: 2px;
-    line-height: 35px;
+    line-height: 30px;
     padding: 15px 0;
     white-space: pre-wrap;
     color: ${(props) => props.theme.colors.summaryTextColor};
+    margin-bottom: 15px;
   }
 `;
 
@@ -122,7 +124,7 @@ export const PostViewContainer = styled.div`
 
 export const CommentsContainer = styled.div`
   background-color: ${(props) => props.theme.colors.articleBackgroundColor};
-  width: 85%;
+  width: 90%;
   margin: 0 auto;
   padding: 15px 25px;
   display: flex;
@@ -146,15 +148,17 @@ export const CommentView = styled.div`
 `;
 export const CommentAuthor = styled.span`
   color: ${(props) => props.theme.colors.summaryTextColor};
-  font-size: 18px;
+  font-size: 22px;
   display: flex;
   align-items: center;
   gap: 10px;
 `;
 
 export const PostControlPanel = styled.div`
+  padding-top: 15px;
+  border-top: 3px dotted ${(props) => props.theme.colors.DelemiterColor};
   display: flex;
-  gap: 25px;
+  gap: 15px;
   height: max-content;
   align-items: center;
 `;
@@ -170,8 +174,13 @@ export const ControlButton = styled.button`
 
 export const AuthorLink = styled(Link)`
   color: ${(props) => props.theme.colors.linkColor};
-  font-size: 18px;
+  font-size: 22px;
   display: flex;
   align-items: center;
   gap: 10px;
+`;
+
+export const LikesSpan = styled.span`
+  font-size: 22px;
+  color: ${(props) => props.theme.colors.summaryTextColor};
 `;

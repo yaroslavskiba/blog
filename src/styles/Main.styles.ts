@@ -27,6 +27,8 @@ export const ContentContainer = styled.div`
 `;
 
 export const LinkComponent = styled(Link)`
+  align-self: start;
+  padding-left: 5%;
   display: flex;
   gap: 5px;
   align-items: center;
@@ -34,7 +36,7 @@ export const LinkComponent = styled(Link)`
 `;
 
 export const HeaderLinkComponent = styled(Link)`
-  font-size: 1.7em;
+  font-size: 34px;
   display: flex;
   gap: 15px;
   align-items: center;

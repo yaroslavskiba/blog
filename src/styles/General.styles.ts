@@ -61,7 +61,7 @@ export const TextArea = styled.textarea`
 
 export const LinkButton = styled.button`
   color: ${(props) => props.theme.colors.linkColor};
-  font-size: 20px;
+  font-size: 22px;
   text-align: left;
   display: flex;
   align-items: center;
