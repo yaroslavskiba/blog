@@ -16,13 +16,14 @@ const UserProfileData = () => {
   return (
     <FlexDisplayColumn>
       <ImgComponent
-        src={image ? image : '/img/readerImg.svg'}
+        src={
+          image
+            ? image
+            : 'https://firebasestorage.googleapis.com/v0/b/blog-app-dbdf8.appspot.com/o/usersImages%2FreaderImg.svg?alt=media&token=1aabe9d2-615f-413c-9395-d920cf23cf25'
+        }
         alt='base profile img'
       />
-      <UserInfoContainer>
-        <UserHighlights>uId:</UserHighlights>
-        <UserStatistics>{user?.uid}</UserStatistics>
-      </UserInfoContainer>
+
       <UserInfoContainer>
         <UserHighlights>Email:</UserHighlights>
         <UserStatistics>{user?.email}</UserStatistics>

@@ -4,7 +4,7 @@ import { AiOutlineArrowLeft, AiOutlineFieldTime } from 'react-icons/ai';
 import { BsGraphUpArrow } from 'react-icons/bs';
 import { GiMailbox } from 'react-icons/gi';
 import { MdDateRange } from 'react-icons/md';
-import { LinkComponent } from '../../../styles/Main.styles';
+import { ReturnLink } from '../../../styles/Main.styles';
 import {
   PostContainer,
   PostTextSpace,
@@ -42,10 +42,10 @@ const Post = () => {
     <>
       <PostViewContainer>
         <PostContainer>
-          <LinkComponent to='/posts'>
+          <ReturnLink to='/posts'>
             <AiOutlineArrowLeft />
             Main
-          </LinkComponent>
+          </ReturnLink>
           <PostTextSpace>
             <h1>{firstLetter(post?.title)}</h1>
             <DescriptionSpan>{firstLetter(post?.description)}</DescriptionSpan>

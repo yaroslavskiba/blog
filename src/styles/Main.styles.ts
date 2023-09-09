@@ -28,7 +28,6 @@ export const ContentContainer = styled.div`
 
 export const LinkComponent = styled(Link)`
   align-self: start;
-  padding-left: 5%;
   display: flex;
   gap: 5px;
   align-items: center;
@@ -81,4 +80,13 @@ export const AreaContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+`;
+
+export const ReturnLink = styled(Link)`
+  align-self: start;
+  padding-left: 5%;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: ${(props) => props.theme.colors.linkColor};
 `;
