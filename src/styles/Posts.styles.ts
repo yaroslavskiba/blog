@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 export const PostContainer = styled.div`
@@ -121,7 +122,7 @@ export const PostViewContainer = styled.div`
 
 export const CommentsContainer = styled.div`
   background-color: ${(props) => props.theme.colors.articleBackgroundColor};
-  width: 90%;
+  width: 85%;
   margin: 0 auto;
   padding: 15px 25px;
   display: flex;
@@ -159,10 +160,18 @@ export const PostControlPanel = styled.div`
 `;
 
 export const ControlButton = styled.button`
-  color: ${(props) => props.theme.colors.danger};
+  color: ${(props) => props.theme.colors.summaryTextColor};
   font-size: 26px;
   display: flex;
   align-items: center;
   gap: 15px;
   width: max-content;
+`;
+
+export const AuthorLink = styled(Link)`
+  color: ${(props) => props.theme.colors.linkColor};
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;

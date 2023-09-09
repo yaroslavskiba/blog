@@ -1,5 +1,6 @@
 import { useAppSelector } from '../../../app/hooks';
 import {
+  AuthorLink,
   AuthorSpan,
   DescriptionSpan,
   PostAuthorContainer,
@@ -47,6 +48,7 @@ const Posts = () => {
         ({
           id,
           creatorEmail,
+          creator,
           date,
           title,
           description,
@@ -66,12 +68,13 @@ const Posts = () => {
                 </DescriptionSpan>
                 <hr />
                 <PostAuthorContainer>
-                  <>
-                    <AuthorSpan>
-                      <GiMailbox />
-                      By {creatorEmail}
-                    </AuthorSpan>
-                  </>
+                  <AuthorSpan>
+                    <GiMailbox />
+                    By
+                    <AuthorLink to={`/user/${creator}`}>
+                      {creatorEmail}
+                    </AuthorLink>
+                  </AuthorSpan>
                   <PostData>
                     <AuthorSpan>
                       <MdDateRange />

@@ -11,6 +11,7 @@ interface CommentsInterface {
 
 interface PostInterface {
   id: string;
+  creator: string;
   creatorEmail: string;
   date: string;
   title: string;

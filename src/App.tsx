@@ -24,6 +24,7 @@ import CreatePost from './Components/Main/Blog/CreatePost/CreatePost';
 import Posts from './Components/Main/Blog/Posts';
 import { getPosts } from './app/slices/postsSlice';
 import Post from './Components/Main/Blog/Post';
+import OtherUserProfile from './Components/Main/Profile/OtherUserProfile';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -62,6 +63,7 @@ function App() {
             <Route path='signUp' element={<SignUp />} />
             <Route path='signIn' element={<SignIn />} />
             <Route path='profile' element={<Profile />} />
+            <Route path='user/:uid' element={<OtherUserProfile />} />
             <Route path='change_to_author' element={<ChangeToAuthor />} />
             <Route path='createPost' element={<CreatePost />} />
           </Route>

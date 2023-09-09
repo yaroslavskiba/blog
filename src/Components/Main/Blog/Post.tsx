@@ -14,6 +14,7 @@ import {
   PostData,
   PostContent,
   PostViewContainer,
+  AuthorLink,
 } from '../../../styles/Posts.styles';
 import { marked } from 'marked';
 import Comments from './Comments';
@@ -49,12 +50,13 @@ const Post = () => {
           <DescriptionSpan>{firstLetter(post?.description)}</DescriptionSpan>
           <hr />
           <PostAuthorContainer>
-            <>
-              <AuthorSpan>
-                <GiMailbox />
-                By {post?.creatorEmail}
-              </AuthorSpan>
-            </>
+            <AuthorSpan>
+              <GiMailbox />
+              By
+              <AuthorLink to={`/user/${post?.creator}`}>
+                {post?.creatorEmail}
+              </AuthorLink>
+            </AuthorSpan>
             <PostData>
               <AuthorSpan>
                 <MdDateRange />

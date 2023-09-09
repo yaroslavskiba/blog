@@ -15,6 +15,7 @@ import { BsPersonBoundingBox, BsCalendarDate } from 'react-icons/bs';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
 const Comments = () => {
+  const status = useAppSelector((state) => state.user.status);
   const dispatch = useAppDispatch();
   const { id } = useParams();
   const [commentState, setCommentState] = useState('');
@@ -31,22 +32,26 @@ const Comments = () => {
 
   return (
     <CommentsContainer>
-      <h2>Create:</h2>
-      <StyleSheetManager shouldForwardProp={(prop) => prop !== 'lightbg'}>
-        <InputText
-          lightbg='light'
-          type='text'
-          name='comment'
-          value={commentState}
-          onChange={(e) => setCommentState(e.target.value)}
-          placeholder='Write your comment here'
-        />
-      </StyleSheetManager>
-      <LinkButton onClick={handleComment}>
-        <AiOutlineSave />
-        Send
-      </LinkButton>
-      <hr />
+      {status === 'Author' && (
+        <>
+          <h2>Create:</h2>
+          <StyleSheetManager shouldForwardProp={(prop) => prop !== 'lightbg'}>
+            <InputText
+              lightbg='light'
+              type='text'
+              name='comment'
+              value={commentState}
+              onChange={(e) => setCommentState(e.target.value)}
+              placeholder='Write your comment here'
+            />
+          </StyleSheetManager>
+          <LinkButton onClick={handleComment}>
+            <AiOutlineSave />
+            Send
+          </LinkButton>
+          <hr />
+        </>
+      )}
       <h3>Comments:</h3>
       <CommentsViewContainer>
         {comments?.map((comment, index: number) => {
