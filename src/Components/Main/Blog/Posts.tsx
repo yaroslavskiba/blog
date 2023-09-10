@@ -57,6 +57,8 @@ const Posts = () => {
           readingTime,
           postRating,
         }) => {
+          const truncatedText = truncateText(postText);
+
           return (
             <PostContainer key={id}>
               <PostTextSpace>
@@ -65,7 +67,7 @@ const Posts = () => {
                   {firstLetter(title)}
                 </HeaderLinkComponent>
                 <DescriptionSpan>
-                  {firstLetter(truncateText(description))}
+                  {firstLetter(description.slice(0, 200))}
                 </DescriptionSpan>
                 <hr />
                 <PostAuthorContainer>
@@ -105,10 +107,11 @@ const Posts = () => {
                   </>
                 </PostAuthorContainer>
                 <PostContent
-                  dangerouslySetInnerHTML={compileMarkdown(
-                    truncateText(postText)
-                  )}
+                  dangerouslySetInnerHTML={compileMarkdown(truncatedText)}
                 />
+                {postText.length > 350 && (
+                  <AuthorLink to={`/posts/${id}`}>See more...</AuthorLink>
+                )}
                 <ControlPanel postId={id} />
               </PostTextSpace>
             </PostContainer>
