@@ -8,6 +8,7 @@ import { auth } from '../../../App';
 import { updateLikes } from '../../../app/slices/postsSlice';
 import { toggleLike } from './Posts.func';
 import { AiOutlineHeart } from 'react-icons/ai';
+import { updateRating } from '../../../app/slices/userSlice';
 
 interface PostIdPropsInterface {
   postId: string | undefined;
@@ -18,7 +19,6 @@ const ControlPanel = ({ postId }: PostIdPropsInterface) => {
   const post = useAppSelector((state) =>
     state.posts.find((post) => post.id === postId)
   );
-  console.log(post);
 
   const dispatch = useAppDispatch();
   const user = auth.currentUser;
@@ -28,6 +28,7 @@ const ControlPanel = ({ postId }: PostIdPropsInterface) => {
       if (postId && user?.uid) {
         await toggleLike(postId, user.uid);
         dispatch(updateLikes(postId));
+        dispatch(updateRating(post.creator));
       }
     }
   };

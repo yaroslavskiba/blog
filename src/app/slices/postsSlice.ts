@@ -29,7 +29,10 @@ export const updateLikes = createAsyncThunk(
     const postRef = doc(db, 'posts', postId);
     const postSnap = await getDoc(postRef);
 
-    return postSnap.data()?.likes;
+    return {
+      likes: postSnap.data()?.likes,
+      postRating: postSnap.data()?.postRating,
+    };
   }
 );
 
@@ -84,7 +87,8 @@ const postsSlice = createSlice({
         );
 
         if (postIndex >= 0) {
-          state[postIndex].likes = action.payload;
+          state[postIndex].likes = action.payload.likes;
+          state[postIndex].postRating = action.payload.postRating;
         }
 
         return state;

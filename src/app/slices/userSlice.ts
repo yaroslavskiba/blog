@@ -10,7 +10,6 @@ interface UserInterface {
   gender: '';
   status: 'Reader' | 'Author';
   image: null | string;
-  isLoading: null | boolean;
 }
 
 const initialState: UserInterface = {
@@ -21,8 +20,19 @@ const initialState: UserInterface = {
   gender: '',
   status: 'Reader',
   image: null,
-  isLoading: null,
 };
+
+export const updateRating = createAsyncThunk(
+  'userSlice/updateRating',
+  async (userId: string) => {
+    const userRef = doc(db, 'users', userId);
+    const userSnap = await getDoc(userRef);
+
+    return {
+      rating: userSnap.data()?.rating,
+    };
+  }
+);
 
 export const fetchUserData = createAsyncThunk(
   'userSlice/fetchUserData',
@@ -50,24 +60,20 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchUserData.pending, (state) => {
-      state.isLoading = true;
-    });
-
-    builder.addCase(fetchUserData.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.name = action.payload?.name || '';
-      state.description = action.payload?.description || '';
-      state.rating = action.payload?.rating || null;
-      state.birthDate = action.payload?.birthDate || '';
-      state.gender = action.payload?.gender || '';
-      state.image = action.payload?.image || null;
-      state.status = action.payload?.status || '';
-    });
-
-    builder.addCase(fetchUserData.rejected, (state) => {
-      state.isLoading = false;
-    });
+    builder
+      .addCase(fetchUserData.fulfilled, (state, action) => {
+        state.name = action.payload?.name || '';
+        state.description = action.payload?.description || '';
+        state.rating = action.payload?.rating || null;
+        state.birthDate = action.payload?.birthDate || '';
+        state.gender = action.payload?.gender || '';
+        state.image = action.payload?.image || null;
+        state.status = action.payload?.status || '';
+      })
+      .addCase(updateRating.fulfilled, (state, action) => {
+        state.rating = action.payload.rating;
+        return state;
+      });
   },
 });
 
