@@ -15,10 +15,13 @@ import {
   PostContent,
   PostViewContainer,
   AuthorLink,
+  DeleteButton,
 } from '../../../styles/Posts.styles';
 import { marked } from 'marked';
 import Comments from './Comments';
 import ControlPanel from './ControlPanel';
+import { Group } from '../../../styles/Header.styles';
+import { RiDeleteBin5Line } from 'react-icons/ri';
 
 const Post = () => {
   const { id } = useParams();
@@ -47,7 +50,12 @@ const Post = () => {
             Main
           </ReturnLink>
           <PostTextSpace>
-            <h1>{firstLetter(post?.title)}</h1>
+            <Group>
+              <h1>{firstLetter(post?.title)}</h1>
+              <DeleteButton>
+                <RiDeleteBin5Line />
+              </DeleteButton>
+            </Group>
             <DescriptionSpan>{firstLetter(post?.description)}</DescriptionSpan>
             <hr />
             <PostAuthorContainer>

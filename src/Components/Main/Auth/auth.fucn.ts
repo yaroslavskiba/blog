@@ -44,7 +44,6 @@ export const createUserData = async () => {
     const data = {
       name: 'user-' + user?.uid.slice(5),
       description: 'n/d',
-      rating: 100,
       birthDate: 'n/d',
       gender: 'n/d',
       status: 'Reader',

@@ -2,14 +2,14 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { db } from '../../App';
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 
-interface CommentsInterface {
+export interface CommentsInterface {
   comment: string;
   creator: string;
   creatorUid: string;
   date: string;
 }
 
-interface PostInterface {
+export interface PostInterface {
   id: string;
   creator: string;
   creatorEmail: string;

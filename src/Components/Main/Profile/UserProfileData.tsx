@@ -10,7 +10,7 @@ import {
 
 const UserProfileData = () => {
   const user = auth.currentUser;
-  const { name, description, status, rating, birthDate, gender, image } =
+  const { name, description, status, birthDate, gender, image } =
     useAppSelector((state) => state.user);
 
   return (
@@ -39,10 +39,6 @@ const UserProfileData = () => {
       <UserInfoContainer>
         <UserHighlights>Status:</UserHighlights>
         <UserStatistics>{status}</UserStatistics>
-      </UserInfoContainer>
-      <UserInfoContainer>
-        <UserHighlights>Rating:</UserHighlights>
-        <UserStatistics>{rating}</UserStatistics>
       </UserInfoContainer>
       <UserInfoContainer>
         <UserHighlights>Birth date:</UserHighlights>

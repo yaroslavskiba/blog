@@ -24,4 +24,8 @@ export const Group = styled.div`
   display: flex;
   gap: 15px;
   justify-content: end;
+
+  h1 {
+    flex: 1 1 95%;
+  }
 `;

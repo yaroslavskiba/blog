@@ -14,7 +14,6 @@ import {
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 interface OtherUserInterface {
-  rating: number;
   gender: string;
   name: string;
   description: string;
@@ -27,7 +26,6 @@ const OtherUserProfile = () => {
   const { uid } = useParams();
   const [user, setUser] = useState<OtherUserInterface>({
     name: '',
-    rating: 100,
     gender: '',
     description: '',
     birthDate: '',
@@ -44,7 +42,6 @@ const OtherUserProfile = () => {
         if (snapshot.exists()) {
           const userData = snapshot.data() as DocumentData;
           const formattedUser: OtherUserInterface = {
-            rating: userData.rating,
             gender: userData.gender,
             name: userData.name,
             description: userData.description,
@@ -80,10 +77,6 @@ const OtherUserProfile = () => {
         <UserInfoContainer>
           <UserHighlights>Status:</UserHighlights>
           <UserStatistics>{user.status}</UserStatistics>
-        </UserInfoContainer>
-        <UserInfoContainer>
-          <UserHighlights>Rating:</UserHighlights>
-          <UserStatistics>{user.rating}</UserStatistics>
         </UserInfoContainer>
         <UserInfoContainer>
           <UserHighlights>Birth date:</UserHighlights>

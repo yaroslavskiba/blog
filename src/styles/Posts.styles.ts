@@ -145,6 +145,7 @@ export const CommentView = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex: 1 1 95%;
 `;
 export const CommentAuthor = styled.span`
   color: ${(props) => props.theme.colors.summaryTextColor};
@@ -152,6 +153,20 @@ export const CommentAuthor = styled.span`
   display: flex;
   align-items: center;
   gap: 10px;
+`;
+
+export const Group = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const DeleteButton = styled.button`
+  font-size: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 5%;
+  color: ${(props) => props.theme.colors.danger};
 `;
 
 export const PostControlPanel = styled.div`

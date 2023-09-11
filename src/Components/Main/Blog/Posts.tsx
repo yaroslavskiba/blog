@@ -66,6 +66,7 @@ const Posts = () => {
                   <AiOutlineLink />
                   {firstLetter(title)}
                 </HeaderLinkComponent>
+
                 <DescriptionSpan>
                   {firstLetter(description.slice(0, 200))}
                 </DescriptionSpan>

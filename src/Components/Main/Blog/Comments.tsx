@@ -2,6 +2,8 @@ import { StyleSheetManager } from 'styled-components';
 import { InputText, LinkButton } from '../../../styles/General.styles';
 import {
   CommentAuthor,
+  DeleteButton,
+  Group,
   CommentView,
   CommentsContainer,
   CommentsViewContainer,
@@ -12,7 +14,10 @@ import { useParams } from 'react-router-dom';
 import { createComment } from './CreateComment.func';
 import { getPosts } from '../../../app/slices/postsSlice';
 import { BsPersonBoundingBox, BsCalendarDate } from 'react-icons/bs';
+import { RiDeleteBin5Line } from 'react-icons/ri';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { deleteComment } from './Delene.func';
+import { auth } from '../../../App';
 
 const Comments = () => {
   const status = useAppSelector((state) => state.user.status);
@@ -23,11 +28,21 @@ const Comments = () => {
     state.posts.find((post) => post.id === id)
   );
   const comments = post?.comments;
+  const user = auth.currentUser;
 
   const handleComment = async () => {
     await createComment(commentState, id);
     dispatch(getPosts());
     setCommentState('');
+  };
+
+  const handleDelete = (id: string | undefined, index: number) => {
+    if (window.confirm('Are you sure?')) {
+      if (id) {
+        deleteComment(id, index);
+      }
+      dispatch(getPosts());
+    }
   };
 
   return (
@@ -56,17 +71,24 @@ const Comments = () => {
       <CommentsViewContainer>
         {comments?.map((comment, index: number) => {
           return (
-            <CommentView key={index}>
-              <CommentAuthor>
-                <BsPersonBoundingBox />
-                {comment.creator}
-              </CommentAuthor>
-              <CommentAuthor>
-                <BsCalendarDate />
-                {comment.date}
-              </CommentAuthor>
-              {comment.comment}
-            </CommentView>
+            <Group key={index}>
+              <CommentView>
+                <CommentAuthor>
+                  <BsPersonBoundingBox />
+                  {comment.creator}
+                </CommentAuthor>
+                <CommentAuthor>
+                  <BsCalendarDate />
+                  {comment.date}
+                </CommentAuthor>
+                {comment.comment}
+              </CommentView>
+              {user?.uid === comment?.creatorUid && (
+                <DeleteButton onClick={() => handleDelete(id, index)}>
+                  <RiDeleteBin5Line />
+                </DeleteButton>
+              )}
+            </Group>
           );
         })}
       </CommentsViewContainer>

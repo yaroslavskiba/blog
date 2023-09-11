@@ -8,7 +8,6 @@ import { auth } from '../../../App';
 import { updateLikes } from '../../../app/slices/postsSlice';
 import { toggleLike } from './Posts.func';
 import { AiOutlineHeart } from 'react-icons/ai';
-import { updateRating } from '../../../app/slices/userSlice';
 
 interface PostIdPropsInterface {
   postId: string | undefined;
@@ -28,7 +27,6 @@ const ControlPanel = ({ postId }: PostIdPropsInterface) => {
       if (postId && user?.uid) {
         await toggleLike(postId, user.uid);
         dispatch(updateLikes(postId));
-        dispatch(updateRating(post.creator));
       }
     }
   };
