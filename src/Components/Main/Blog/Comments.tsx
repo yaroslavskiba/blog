@@ -16,7 +16,7 @@ import { getPosts } from '../../../app/slices/postsSlice';
 import { BsPersonBoundingBox, BsCalendarDate } from 'react-icons/bs';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { deleteComment } from './Delene.func';
+import { deleteComment } from './Delete.func';
 import { auth } from '../../../App';
 
 const Comments = () => {

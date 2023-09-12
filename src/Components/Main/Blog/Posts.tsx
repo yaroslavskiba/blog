@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import {
   AuthorLink,
   AuthorSpan,
@@ -16,6 +16,8 @@ import { AiOutlineFieldTime, AiOutlineLink } from 'react-icons/ai';
 import { marked } from 'marked';
 import { HeaderLinkComponent } from '../../../styles/Main.styles';
 import ControlPanel from './ControlPanel';
+import { useEffect } from 'react';
+import { getPosts } from '../../../app/slices/postsSlice';
 
 marked.use({
   pedantic: false,
@@ -26,11 +28,16 @@ marked.use({
 const Posts = () => {
   const status = useAppSelector((state) => state.user.status);
   const posts = useAppSelector((state) => state.posts);
+  const dispatch = useAppDispatch();
   const compileMarkdown = (text: string) => {
     if (text) {
       return { __html: marked(text) };
     }
   };
+
+  useEffect(() => {
+    dispatch(getPosts());
+  });
 
   const truncateText = (text: string) => {
     if (text.length > 350) {

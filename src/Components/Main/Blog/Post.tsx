@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../../../app/hooks';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { AiOutlineArrowLeft, AiOutlineFieldTime } from 'react-icons/ai';
 import { BsGraphUpArrow } from 'react-icons/bs';
 import { GiMailbox } from 'react-icons/gi';
@@ -22,10 +22,16 @@ import Comments from './Comments';
 import ControlPanel from './ControlPanel';
 import { Group } from '../../../styles/Header.styles';
 import { RiDeleteBin5Line } from 'react-icons/ri';
+import { deletePost } from './Delete.func';
+import { getPosts } from '../../../app/slices/postsSlice';
+import { auth } from '../../../App';
 
 const Post = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const posts = useAppSelector((state) => state.posts);
+  const user = auth.currentUser;
 
   const post = posts.find((post) => post.id === id);
 
@@ -41,6 +47,16 @@ const Post = () => {
     }
   };
 
+  const handlePostDelete = (postId: string | undefined) => {
+    if (postId) {
+      if (window.confirm('Are you sure?')) {
+        deletePost(postId);
+        dispatch(getPosts());
+        navigate('/posts');
+      }
+    }
+  };
+
   return (
     <>
       <PostViewContainer>
@@ -52,9 +68,11 @@ const Post = () => {
           <PostTextSpace>
             <Group>
               <h1>{firstLetter(post?.title)}</h1>
-              <DeleteButton>
-                <RiDeleteBin5Line />
-              </DeleteButton>
+              {user?.uid === post?.creator && (
+                <DeleteButton onClick={() => handlePostDelete(post?.id)}>
+                  <RiDeleteBin5Line />
+                </DeleteButton>
+              )}
             </Group>
             <DescriptionSpan>{firstLetter(post?.description)}</DescriptionSpan>
             <hr />
